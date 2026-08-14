@@ -1,0 +1,68 @@
+[
+  {
+    "id": "alkareem",
+    "name": "Alkareem Parfumerie",
+    "category": "E-Commerce & Lovable",
+    "year": "2024",
+    "tagline": "Boutique en ligne complète (~500 produits) avec flux WhatsApp-first.",
+    "description": "Plateforme e-commerce performante intégrant un catalogue riche de 500 références, recherche temps réel, filtrage multi-critères, panel administrateur et optimisation du premier rendu (réduit de 3-6s à ~1s sur réseau 3G).",
+    "stack": ["Lovable", "React", "TypeScript", "Tailwind CSS", "WhatsApp API"],
+    "image": "/ideas/original-a1ccb31b4d908f03813c55efba5e7a7c.webp",
+    "metrics": "TTFB 3G : ~1s (-75%)"
+  },
+  {
+    "id": "adjoua",
+    "name": "Adjoua — Assistant Vocal IA",
+    "category": "Télécoms & IA Vocale",
+    "year": "2024",
+    "tagline": "Centre d'appels automatisé par IA pour le milieu hospitalier (CHUC).",
+    "description": "Infrastructure hybride edge/cloud combinant Raspberry Pi 3B, VPS Contabo et tunnel WireGuard sécurisé. Serveur Asterisk 22.10.1 recompilé avec support ARI/PJSIP, interfaçage SFTP et génération automatique de rapports techniques médicaux.",
+    "stack": ["Asterisk 22", "ARI / PJSIP", "Raspberry Pi", "WireGuard", "Python", "Pandoc"],
+    "image": "/ideas/9881a74dc6d139d97f01335ee37bad63.webp",
+    "metrics": "Disponibilité 99.9% Edge"
+  },
+  {
+    "id": "sofia",
+    "name": "Sofia — Call Center Bancaire IA",
+    "category": "IA & VoIP Asterisk",
+    "year": "2024",
+    "tagline": "Architecture vocale temps réel avec détection de barge-in pour Banque Investor.",
+    "description": "Pipeline vocal Python complet intégrant Groq Whisper (STT ultra-faible latence), LLaMA 3.3 (LLM) et ElevenLabs (TTS). Détection de barge-in en direct, cache audio multi-niveaux, stockage PostgreSQL, file d'attente Redis et dashboard de supervision Flask.",
+    "stack": ["Groq Whisper", "LLaMA 3.3", "ElevenLabs", "Asterisk ARI", "PostgreSQL", "Redis", "Flask"],
+    "image": "/ideas/4966e1130217ee2de137c8c1d1b3ec2f.webp",
+    "metrics": "Latence vocale < 700ms"
+  },
+  {
+    "id": "scraper-legende",
+    "name": "Scraper Légende",
+    "category": "Data Engineering & SaaS",
+    "year": "2023",
+    "tagline": "Moteur de veille concurrentielle multi-sources pour NetWave Studio.",
+    "description": "Outil d'automatisation et de scraping connecté à 11 plateformes pour détecter les opportunités SaaS émergentes. Algorithme de scoring d'opportunités, déduplication avancée, base PostgreSQL, interface Flask et génération de business cases automatisés.",
+    "stack": ["Python", "11 Connecteurs API", "PostgreSQL", "Flask", "Data Scoring"],
+    "image": "/ideas/9ca31649e069a7a5caaa199bc0343937.webp",
+    "metrics": "11 sources automatisées"
+  },
+  {
+    "id": "qr-commande",
+    "name": "Système de Commande QR Code",
+    "category": "Web App & Fintech",
+    "year": "2023",
+    "tagline": "Solution de restauration sans contact avec paiement Mobile Money local.",
+    "description": "Application web complète (menu digital interactif, vue cuisine temps réel type Kanban et dashboard propriétaire) avec passerelle de paiement Mobile Money intégrée (MTN MoMo, MOOV Money, Celtiis).",
+    "stack": ["React", "TypeScript", "Tailwind CSS", "Mobile Money API", "WebSockets"],
+    "image": "/ideas/ad88a826bccffa2522cc2d6b842b40c8.webp",
+    "metrics": "3 passerelles MoMo"
+  },
+  {
+    "id": "multi-agents",
+    "name": "Architecture Multi-Agents",
+    "category": "Automatisation & IA",
+    "year": "2024",
+    "tagline": "Système d'orchestration créative autonome basé sur n8n et Claude API.",
+    "description": "Conception d'une infrastructure d'agents spécialisés (génération de logos, affiches, sites web et veille technologique) pilotés via un point d'entrée WhatsApp Business unique.",
+    "stack": ["n8n", "Claude API", "Python", "WhatsApp Business API", "Docker"],
+    "image": "/ideas/d225bc8fc6bc15549ec3fd494c198531.webp",
+    "metrics": "4 agents autonomes"
+  }
+]

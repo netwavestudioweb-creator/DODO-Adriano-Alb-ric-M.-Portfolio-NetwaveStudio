@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dodi — Technicien Réseaux & Télécoms · Fondateur NetWave Studio</title>
+    <meta name="description" content="Portfolio de Dodi (Dodo Albéric Mantey Adriano) — Technicien Réseaux & Télécoms, Architecte de centres d'appels IA et Fondateur de NetWave Studio à Cotonou, Bénin." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-snow text-graphite font-sans antialiased selection:bg-coral selection:text-snow overflow-x-hidden">
+    <!-- SVG Global Noise Texture (0.045 opacity) -->
+    <svg id="noise-overlay" class="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-[0.045] mix-blend-multiply" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

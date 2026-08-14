@@ -1,0 +1,62 @@
+{
+  "web_ia": {
+    "label": "Piste Web & IA",
+    "subtitle": "Conception d'applications web, interfaces réactives, intégrations d'API et agents vocaux intelligents.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Découverte & Cadrage",
+        "summary": "Analyse des besoins métier, des objectifs et du contexte d'usage. Définition des flux de données et choix des technologies adaptées au projet.",
+        "badge": "Analyse Métier"
+      },
+      {
+        "step": "02",
+        "title": "Architecture Technique",
+        "summary": "Schématisation de l'application, des pipelines IA ou des bases de données selon le besoin. Sélection des API et conception des maquettes fonctionnelles.",
+        "badge": "Design Système"
+      },
+      {
+        "step": "03",
+        "title": "Développement & Intégration",
+        "summary": "Écriture d'un code propre, testé et modulaire. Intégration des passerelles locales (WhatsApp, Mobile Money) et connexion aux services tiers nécessaires.",
+        "badge": "Code & API"
+      },
+      {
+        "step": "04",
+        "title": "Mise en Ligne & Suivi",
+        "summary": "Déploiement sécurisé, formation des équipes clientes, documentation technique et monitoring continu de la disponibilité des services logiciels et IA.",
+        "badge": "Production & SLA"
+      }
+    ]
+  },
+  "telecom": {
+    "label": "Piste Réseaux & Télécoms",
+    "subtitle": "Déploiement d'infrastructures physiques et logiques, téléphonie VoIP Asterisk et sécurisation des flux.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Audit & Diagnostic",
+        "summary": "Cartographie de l'infrastructure existante, identification des points de faiblesse et des contraintes de connectivité entre les sites.",
+        "badge": "Cartographie"
+      },
+      {
+        "step": "02",
+        "title": "Conception d'Architecture",
+        "summary": "Définition de la topologie réseau, choix des équipements, plan d'adressage et stratégie de sécurisation périmétrique.",
+        "badge": "Topologie LAN/WAN"
+      },
+      {
+        "step": "03",
+        "title": "Déploiement & Configuration",
+        "summary": "Câblage, installation des équipements, configuration des serveurs VoIP et VPN, tests de latence réels sur le terrain.",
+        "badge": "VoIP & VPN"
+      },
+      {
+        "step": "04",
+        "title": "Maintenance & Supervision",
+        "summary": "Surveillance continue de la disponibilité des équipements, interventions préventives et curatives, application des procédures de sécurité réseau.",
+        "badge": "Supervision 24/7"
+      }
+    ]
+  }
+}

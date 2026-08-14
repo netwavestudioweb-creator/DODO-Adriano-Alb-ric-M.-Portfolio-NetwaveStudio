@@ -1,0 +1,66 @@
+{
+  "mastery": [
+    {
+      "name": "Réseaux & Télécoms",
+      "percentage": 95,
+      "summary": "Infrastructures d'entreprise, téléphonie VoIP, liaisons sécurisées et raccordement fibre.",
+      "tag": "Cœur de Métier"
+    },
+    {
+      "name": "Développement Web",
+      "percentage": 90,
+      "summary": "Sites vitrines, boutiques e-commerce rapides et applications sur-mesure.",
+      "tag": "Production"
+    },
+    {
+      "name": "Automatisation & IA",
+      "percentage": 85,
+      "summary": "Agents vocaux conversationnels, assistants WhatsApp et workflows sans friction.",
+      "tag": "Innovation"
+    },
+    {
+      "name": "Infrastructure & Systèmes",
+      "percentage": 80,
+      "summary": "Déploiement de serveurs, surveillance continue et haute disponibilité.",
+      "tag": "Fiabilité"
+    }
+  ],
+  "categories": [
+    {
+      "title": "Réseaux & Télécoms",
+      "skills": [
+        "Infrastructures réseau d'entreprise",
+        "Téléphonie VoIP professionnelle",
+        "Interconnexions sécurisées inter-sites",
+        "Raccordement et test fibre optique"
+      ]
+    },
+    {
+      "title": "Développement Web",
+      "skills": [
+        "Sites vitrines et boutiques en ligne",
+        "Interfaces réactives optimisées 3G/4G",
+        "Passerelles de paiement Mobile Money",
+        "Panels d'administration sur-mesure"
+      ]
+    },
+    {
+      "title": "Intelligence Artificielle",
+      "skills": [
+        "Centres d'appels et agents vocaux 24/7",
+        "Automatisation de processus métier",
+        "Assistants conversationnels WhatsApp",
+        "Traitement et analyse de données"
+      ]
+    },
+    {
+      "title": "Systèmes & Disponibilité",
+      "skills": [
+        "Configuration et gestion de serveurs",
+        "Surveillance et diagnostic d'incidents",
+        "Sécurisation des accès et sauvegardes",
+        "Continuité d'activité sans coupure"
+      ]
+    }
+  ]
+}
