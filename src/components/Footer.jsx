@@ -11,23 +11,27 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         
         {/* Left: Brand Identity */}
-        <div className="flex flex-wrap items-center gap-3 text-center md:text-left">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-center sm:text-left">
           <span className="font-sans font-extrabold text-2xl text-snow tracking-tight">
             DODI<span className="text-coral">.</span>
           </span>
-          <span className="mono-label text-xs uppercase px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-snow/80">
-            NetWave Studio
-          </span>
           <span className="hidden sm:inline-block text-white/20">|</span>
-          <p className="text-xs text-snow/60">
+          <p className="text-xs text-snow/70">
             Technicien Réseaux & Télécoms · Développeur Web & Architecte IA
           </p>
+          <span className="hidden md:inline-block text-white/20">|</span>
+          <a
+            href="mailto:netwave.studio.web@gmail.com"
+            className="mono-label text-xs text-snow/40 hover:text-coral transition-colors"
+          >
+            Fondateur de NetWave Studio →
+          </a>
         </div>
 
         {/* Right: Copyright & Back to top button */}
         <div className="flex items-center gap-6">
           <p className="text-xs mono-label text-snow/40 text-center md:text-right">
-            © {new Date().getFullYear()} DODO Albéric Mantey Adriano — NetWave Studio. Tous droits réservés.
+            © {new Date().getFullYear()} DODO Albéric Mantey Adriano. Tous droits réservés.
           </p>
 
           <button

@@ -1,22 +1,22 @@
 [
   {
-    "question": "Quels sont vos délais habituels de livraison ?",
-    "answer": "Pour un site vitrine ou e-commerce moderne, comptez entre 1 et 3 semaines selon la complexité du catalogue. Pour une infrastructure réseau spécifique ou un centre d'appels IA sur mesure, le délai varie de 2 à 5 semaines incluant les phases de tests de charge et d'intégration terrain."
+    "question": "Quelles sont vos modalités d'intervention (CDI, Freelance, Conseil) ?",
+    "answer": "Diplômé et certifié Cisco, je suis ouvert aux opportunités en entreprise (CDI / CDD), aux contrats de prestation freelance et aux missions de conseil technique. J'interviens sur site au Bénin/Afrique de l'Ouest et à distance dans le monde entier."
   },
   {
     "question": "Quelle est votre stack technique de prédilection ?",
-    "answer": "Côté web et automatisations : React 19, TypeScript, Tailwind CSS, n8n, Python et PostgreSQL. Côté télécoms et IA : Asterisk (ARI/PJSIP), WireGuard, Docker, Raspberry Pi pour l'edge computing, et les modèles Groq Whisper / LLaMA / ElevenLabs pour la voix."
+    "answer": "Côté Réseaux & Télécoms : Cisco (LAN/WAN, VLAN, sécurité), Asterisk (ARI/PJSIP), WireGuard, Fibre Optique & Edge Computing (Raspberry Pi/Docker). Côté Web & IA : React 19, TypeScript, Tailwind CSS, Python, PostgreSQL, n8n, Groq Whisper et LLaMA 3.3."
   },
   {
-    "question": "Intervenez-vous uniquement au Bénin ou à l'international ?",
-    "answer": "Basé à Cotonou, j'interviens sur site pour les déploiements physiques (fibre, routeurs, serveurs locaux) au Bénin et dans la sous-région ouest-africaine. Pour tous les projets de développement web, d'automatisation IA et d'architecture cloud, j'accompagne des clients partout dans le monde à distance."
+    "question": "Pouvez-vous intervenir sur une infrastructure ou application existante ?",
+    "answer": "Absolument. Qu'il s'agisse d'optimiser le temps de chargement d'un site web (comme pour Alkareem Parfumerie réduit à ~1s sur 3G), d'auditer et sécuriser un réseau local, ou de connecter des automations IA à un système existant, j'interviens sans rupture de service."
   },
   {
-    "question": "Pouvez-vous moderniser ou refondre un système ou site existant ?",
-    "answer": "Absolument. Qu'il s'agisse d'optimiser le temps de chargement d'un site e-commerce lent (comme nous l'avons fait pour Alkareem en 3G), de migrer une téléphonie traditionnelle vers un standard VoIP Asterisk, ou de brancher une automatisation WhatsApp sur une base existante, j'interviens sur l'existant sans rupture de service."
+    "question": "Comment s'organise une collaboration à distance ou hybride ?",
+    "answer": "Grâce aux outils d'orchestration modernes (Git, Docker, tunnels sécurisés, gestion agile), la distance n'est pas un obstacle. La communication est fluide via Slack/WhatsApp/Email avec des points d'étape réguliers."
   },
   {
-    "question": "Quelle est votre disponibilité actuelle pour de nouveaux projets ?",
-    "answer": "Je réserve actuellement quelques créneaux pour des missions de conseil télécoms, de développement web et de déploiement de centres d'appels IA via NetWave Studio. Contactez-moi directement pour planifier un premier échange technique."
+    "question": "Quelle est votre disponibilité actuelle ?",
+    "answer": "Je suis disponible immédiatement pour échanger sur de nouvelles opportunités. N'hésitez pas à me contacter directement par email personnel (adrrianododo@gmail.com) ou WhatsApp."
   }
 ]

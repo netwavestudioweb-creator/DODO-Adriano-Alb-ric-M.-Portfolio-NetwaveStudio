@@ -74,18 +74,21 @@ export default function Hero() {
           </div>
 
           {/* Main Hero Title */}
-          <h1 className="hero-title-main font-sans font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-4">
+          <h1 className="hero-title-main font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1] mb-4">
             DODI<span className="text-coral">.</span>
+            <span className="block text-xl sm:text-2xl md:text-3xl font-medium tracking-normal text-snow/90 mt-2">
+              Technicien Réseaux & Télécoms <span className="text-coral">|</span> Architecte de solutions IA & Infrastructures
+            </span>
           </h1>
 
           {/* Dramatic Serif Accent - Tagline */}
-          <p className="hero-serif serif-italic text-2xl sm:text-3xl md:text-4xl text-coral-soft/90 max-w-xl font-normal leading-tight mb-4">
-            Je connecte les réseaux d'aujourd'hui aux intelligences de demain.
+          <p className="hero-serif serif-italic text-xl sm:text-2xl md:text-3xl text-coral-soft/90 max-w-xl font-normal leading-tight mb-4">
+            Je connecte les infrastructures réseaux aux intelligences artificielles de demain.
           </p>
 
           {/* Subtitle / Identity */}
-          <p className="hero-title-main text-sm sm:text-base text-snow/70 max-w-lg mb-8 font-normal leading-relaxed">
-            <strong className="text-snow font-semibold">DODO Albéric Mantey Adriano</strong> — je conçois des solutions qui tiennent la route, du terrain jusqu'au cloud. Fondateur de <span className="text-snow font-semibold">NetWave Studio</span>, où j'accompagne PME et institutions ouest-africaines dans leur transformation digitale.
+          <p className="hero-title-main text-sm sm:text-base text-snow/70 max-w-xl mb-8 font-normal leading-relaxed">
+            <strong className="text-snow font-semibold">DODO Albéric Mantey Adriano</strong> — je conçois des architectures solides et des applications haute performance, du terrain jusqu'au cloud. Fondateur de <span className="text-snow/90 font-medium">NetWave Studio</span> (réalisation entrepreneuriale), j'accompagne entreprises et institutions dans leur modernisation technique.
           </p>
 
           {/* Monospace Stats Strip */}
@@ -136,10 +139,10 @@ export default function Hero() {
               
               <div className="absolute bottom-4 left-4 right-4 text-left">
                 <p className="mono-label text-[11px] uppercase tracking-widest text-coral font-medium">
-                  Fondateur & Lead Tech
+                  Réseaux · Télécoms · IA · Web
                 </p>
                 <p className="font-sans font-bold text-base text-snow">
-                  NetWave Studio
+                  DODO Albéric Mantey Adriano
                 </p>
               </div>
             </div>

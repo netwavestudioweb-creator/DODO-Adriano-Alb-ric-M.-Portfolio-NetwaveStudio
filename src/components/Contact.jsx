@@ -20,32 +20,36 @@ export default function Contact() {
 
   const socialLinks = [
     {
-      name: 'Email Studio (NetWave)',
-      value: 'netwave.studio.web@gmail.com',
-      href: 'mailto:netwave.studio.web@gmail.com',
-      icon: Building2,
-      desc: 'Projets, devis & partenariats',
-    },
-    {
       name: 'Email Personnel (DODI)',
       value: 'adrrianododo@gmail.com',
       href: 'mailto:adrrianododo@gmail.com',
       icon: User,
-      desc: 'Contact direct & opportunités',
+      desc: 'Contact direct pour opportunités & recrutement',
+      isPrimary: true,
     },
     {
-      name: 'WhatsApp Business',
+      name: 'WhatsApp Direct',
       value: '+229 01 50 88 46 70',
       href: 'https://wa.me/2290150884670',
       icon: MessageCircle,
-      desc: 'Échanges rapides 7j/7',
+      desc: 'Échanges rapides & messagerie direct',
+      isPrimary: true,
     },
     {
       name: 'LinkedIn',
       value: 'Dodo Albéric Mantey Adriano',
       href: 'https://linkedin.com',
       icon: LinkedInIcon,
-      desc: 'Réseau professionnel',
+      desc: 'Profil professionnel & réseau',
+      isPrimary: true,
+    },
+    {
+      name: 'Pour un projet d\'agence via NetWave Studio →',
+      value: 'netwave.studio.web@gmail.com',
+      href: 'mailto:netwave.studio.web@gmail.com',
+      icon: Building2,
+      desc: 'Projets d\'entreprise & devis agence',
+      isSecondary: true,
     },
   ];
 
@@ -60,13 +64,13 @@ export default function Contact() {
         <div className="max-w-3xl mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
             <span className="w-2 h-2 rounded-full bg-coral inline-block" />
-            Collaboration & Ingénierie
+            Contact & Opportunités
           </div>
           <h2 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-snow leading-[0.95] mb-6">
-            Travaillons ensemble<span className="text-coral">.</span>
+            Échangeons ensemble<span className="text-coral">.</span>
           </h2>
           <p className="text-snow/70 text-base md:text-lg font-normal leading-relaxed">
-            Vous avez un projet de centre d’appels IA, besoin d’un déploiement réseau robuste ou d’un site web sur-mesure ? Parlons de votre architecture.
+            Vous recherchez un Technicien Réseaux & Télécoms, un Développeur Web ou un Architecte IA pour un poste, une mission freelance ou un projet ? N'hésitez pas à me contacter.
           </p>
         </div>
 
@@ -75,7 +79,7 @@ export default function Contact() {
           {/* Left Column: Direct Links Cards */}
           <div className="lg:col-span-5 space-y-4">
             <h3 className="mono-label text-xs uppercase tracking-widest text-snow/60 mb-6">
-              Canaux de communication directs
+              Canaux de communication personnels
             </h3>
 
             {socialLinks.map((item, idx) => {
@@ -86,10 +90,18 @@ export default function Contact() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-premium group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-coral/40 transition-all"
+                  className={`card-premium group flex items-center justify-between p-4 sm:p-5 rounded-2xl border transition-all ${
+                    item.isSecondary
+                      ? 'bg-white/[0.02] hover:bg-white/[0.05] border-white/5 hover:border-white/20 mt-4'
+                      : 'bg-white/[0.05] hover:bg-white/[0.09] border-white/10 hover:border-coral/40'
+                  }`}
                 >
                   <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.06] flex-shrink-0 flex items-center justify-center text-coral group-hover:bg-coral group-hover:text-white transition-colors">
+                    <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex-shrink-0 flex items-center justify-center transition-colors ${
+                      item.isSecondary
+                        ? 'bg-white/[0.04] text-snow/60 group-hover:bg-white/10 group-hover:text-snow'
+                        : 'bg-white/[0.06] text-coral group-hover:bg-coral group-hover:text-white'
+                    }`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
@@ -110,10 +122,10 @@ export default function Contact() {
             })}
 
             {/* Note on confidentiality */}
-            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 text-xs text-snow/50 leading-relaxed flex items-start gap-2.5">
+            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 text-xs text-snow/50 leading-relaxed flex items-start gap-2.5 mt-6">
               <Shield className="w-4 h-4 text-coral flex-shrink-0 mt-0.5" />
               <p>
-                <strong className="text-snow/80">Confidentialité garantie :</strong> Tous les échanges et architectures techniques partagés font l'objet d'une stricte confidentialité.
+                <strong className="text-snow/80">Réactivité & Confidentialité :</strong> Réponses sous 24h ouvrées. Vos projets et échanges restent strictement confidentiels.
               </p>
             </div>
           </div>
@@ -129,7 +141,7 @@ export default function Contact() {
                   Message envoyé avec succès !
                 </h3>
                 <p className="text-sm text-snow/70 max-w-sm mx-auto">
-                  Merci, DODI prendra connaissance de votre message et vous répondra sous 24h ouvrées.
+                  Merci ! DODI prendra connaissance de votre message et vous recontactera sous 24h.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -172,11 +184,11 @@ export default function Contact() {
 
                 <div>
                   <label className="block mono-label text-xs uppercase tracking-wider text-snow/70 mb-2">
-                    Objet du projet / Service souhaité
+                    Objet de votre message
                   </label>
                   <input
                     type="text"
-                    placeholder="Ex: Centre d'appels IA Asterisk / Refonte site e-commerce"
+                    placeholder="Ex: Opportunité de poste / Mission freelance / Devis"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full bg-white/[0.05] border border-white/15 focus:border-coral rounded-xl px-4 py-3.5 text-sm text-snow placeholder-white/20 transition-colors focus:outline-none"
@@ -185,12 +197,12 @@ export default function Contact() {
 
                 <div>
                   <label className="block mono-label text-xs uppercase tracking-wider text-snow/70 mb-2">
-                    Détails de votre besoin *
+                    Message *
                   </label>
                   <textarea
                     rows="5"
                     required
-                    placeholder="Présentez brièvement vos objectifs, le contexte technique et vos délais souhaités..."
+                    placeholder="Présentez votre projet, les compétences recherchées ou vos objectifs..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-white/[0.05] border border-white/15 focus:border-coral rounded-xl px-4 py-3.5 text-sm text-snow placeholder-white/20 transition-colors focus:outline-none resize-none"
@@ -201,7 +213,7 @@ export default function Contact() {
                   type="submit"
                   className="btn-magnetic w-full py-4 px-8 rounded-full bg-coral hover:bg-coral-hover text-snow font-bold text-sm md:text-base shadow-coral-glow flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Envoyer la demande d'architecture</span>
+                  <span>Envoyer votre message</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>

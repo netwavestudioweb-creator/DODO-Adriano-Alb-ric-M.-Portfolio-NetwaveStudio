@@ -37,7 +37,7 @@
     "name": "Scraper Légende",
     "category": "Data Engineering & SaaS",
     "year": "2023",
-    "tagline": "Moteur de veille concurrentielle multi-sources pour NetWave Studio.",
+    "tagline": "Moteur de veille concurrentielle multi-sources et d'automatisation SaaS.",
     "description": "Outil d'automatisation et de scraping connecté à 11 plateformes pour détecter les opportunités SaaS émergentes. Algorithme de scoring d'opportunités, déduplication avancée, base PostgreSQL, interface Flask et génération de business cases automatisés.",
     "stack": ["Python", "11 Connecteurs API", "PostgreSQL", "Flask", "Data Scoring"],
     "image": "/ideas/9ca31649e069a7a5caaa199bc0343937.webp",

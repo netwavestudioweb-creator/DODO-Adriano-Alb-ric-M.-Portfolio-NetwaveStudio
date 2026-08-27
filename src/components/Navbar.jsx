@@ -73,13 +73,13 @@ export default function Navbar() {
             D<span className="text-coral">.</span>A<span className="text-coral">.</span>
           </span>
           <span
-            className={`hidden sm:inline-block mono-label text-xs tracking-wider px-2 py-0.5 rounded-full uppercase border transition-colors ${
+            className={`hidden sm:inline-block mono-label text-xs tracking-wider px-2.5 py-0.5 rounded-full border transition-colors ${
               mobileMenuOpen || isScrolled
-                ? 'border-ink/10 text-graphite-muted bg-snow-2'
-                : 'border-white/15 text-snow/70 bg-white/5'
+                ? 'border-ink/10 text-graphite-muted bg-snow-2 hover:text-coral'
+                : 'border-white/15 text-snow/60 bg-white/5 hover:text-snow'
             }`}
           >
-            NetWave Studio
+            Fondateur NetWave Studio
           </span>
         </a>
 
@@ -141,7 +141,7 @@ export default function Navbar() {
           ))}
 
           <div className="mt-3 pt-3 border-t border-ink/10 flex items-center justify-between px-2 text-xs mono-label text-graphite-muted">
-            <span>NetWave Studio · 2026</span>
+            <span>DODI · Portfolio 2026</span>
             <span className="text-coral">Cotonou, Bénin</span>
           </div>
         </div>

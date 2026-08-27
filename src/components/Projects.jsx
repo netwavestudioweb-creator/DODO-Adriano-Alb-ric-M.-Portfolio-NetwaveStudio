@@ -104,7 +104,7 @@ export default function Projects() {
                   <span>Échanger sur ce projet</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-coral transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                 </a>
-                <span className="mono-label text-[10px] text-graphite-muted">NetWave</span>
+                <span className="mono-label text-[10px] text-coral font-semibold">Réalisation DODI</span>
               </div>
             </article>
           ))}
