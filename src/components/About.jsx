@@ -1,7 +1,7 @@
 import React from 'react';
 import { Network, Bot, Globe, Shield, Award, BookOpen, Languages, Sparkles } from 'lucide-react';
 
-export default function About() {
+export default function About({ track }) {
   const experiences = [
     {
       role: 'Fondateur & Lead Tech',
@@ -31,6 +31,15 @@ export default function About() {
       stack: ['Fibre Optique', 'Soudure Optique', 'Configuration Routeurs', 'Normes Télécoms'],
     },
   ];
+
+  // Reorder experiences based on track
+  if (track === 'network') {
+    // Put SOBAPS and Premium Company first for network track
+    const netwave = experiences[0];
+    experiences[0] = experiences[1];
+    experiences[1] = experiences[2];
+    experiences[2] = netwave;
+  }
 
   const education = [
     {
@@ -81,9 +90,10 @@ export default function About() {
             </h3>
 
             <div className="space-y-4 text-graphite text-base md:text-lg leading-relaxed font-normal">
-              <p>
-                Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (<strong className="text-ink font-semibold">UATM GASA Formation</strong>) et certifié <strong className="text-ink font-semibold">Cisco Networking</strong>, je navigue entre deux mondes : l'infrastructure réseau et télécoms d'un côté, le développement et l'intelligence artificielle appliquée de l'autre.
-              </p>
+              {track === 'network' 
+                ? "Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et certifié Cisco Networking, je suis spécialisé dans le déploiement d'infrastructures fiables et sécurisées."
+                : "Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et développeur full-stack passionné, je conçois des solutions numériques performantes et des agents intelligents."
+              }
               <p>
                 À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, mon studio freelance, je conçois des sites web, des applications, des solutions réseaux et des outils d'automatisation pour des PME et institutions ouest-africaines.
               </p>

@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         ink: "#1C1C1E",
-        coral: "#E8634A",
-        "coral-hover": "#D8533A",
-        "coral-soft": "#F3D9D2",
+        coral: 'rgb(var(--color-accent) / <alpha-value>)',
+        "coral-hover": 'rgb(var(--color-accent-hover) / <alpha-value>)',
+        "coral-soft": 'rgb(var(--color-accent-soft) / <alpha-value>)',
         snow: "#FAFAFA",
         "snow-2": "#F1EFEC",
         graphite: "#2D2D2D",

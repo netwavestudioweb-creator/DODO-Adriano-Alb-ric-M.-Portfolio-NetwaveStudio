@@ -4,8 +4,11 @@ import { Network, Code2, Bot, Server, CheckCircle2, Layers } from 'lucide-react'
 
 const categoryIcons = [Network, Code2, Bot, Server];
 
-export default function Skills() {
+export default function Skills({ track }) {
   const { mastery, categories } = skillsData;
+
+  const filteredMastery = track ? mastery.filter(m => m.track.includes(track)) : mastery;
+  const filteredCategories = track ? categories.filter(c => c.track.includes(track)) : categories;
 
   // SVG Circular progress constants
   const radius = 36;
@@ -13,8 +16,11 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-24 md:py-32 bg-ink text-snow relative overflow-hidden">
-      {/* Ambient background glow */}
+      {/* Ambient background glow & Neural Grid for Dev */}
       <div className="absolute top-1/3 -left-32 w-80 h-80 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
+      {track === 'dev' && (
+        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      )}
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
         
@@ -32,9 +38,9 @@ export default function Skills() {
           </p>
         </div>
 
-        {/* 1. Mastery Cards (4 Clear Pillars) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {mastery.map((item, idx) => {
+        {/* 1. Mastery Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+          {filteredMastery.map((item, idx) => {
             const strokeDashoffset = circumference - (item.percentage / 100) * circumference;
 
             return (
@@ -97,9 +103,9 @@ export default function Skills() {
           })}
         </div>
 
-        {/* 2. Detailed Categories (Simplified & High-Level) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12 border-t border-white/10">
-          {categories.map((cat, idx) => {
+        {/* 2. Detailed Categories */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-white/10">
+          {filteredCategories.map((cat, idx) => {
             const Icon = categoryIcons[idx] || Layers;
             return (
               <div
@@ -127,6 +133,31 @@ export default function Skills() {
             );
           })}
         </div>
+
+          {/* Seniority Markers (Dev Only) */}
+          {track === 'dev' && (
+            <div className="mt-12 bg-coral/5 border border-coral/20 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+              <div className="w-12 h-12 rounded-2xl bg-coral/10 flex items-center justify-center text-coral shrink-0">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-sans font-bold text-lg text-snow mb-2">
+                  Pratiques d'Ingénierie & Qualité
+                </h4>
+                <p className="text-sm text-snow/70 leading-relaxed font-normal mb-4">
+                  L'excellence technique ne se limite pas au code qui fonctionne, mais au code qui dure, qui se déploie sereinement et qui évolue.
+                </p>
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                  {['Intégration & Déploiement Continus (CI/CD)', 'GitFlow & Versioning', 'Tests Automatisés', 'Revue de Code rigoureuse'].map((practice, i) => (
+                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-[11px] font-mono text-snow/80">
+                      <CheckCircle2 className="w-3 h-3 text-coral" />
+                      {practice}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
       </div>
     </section>

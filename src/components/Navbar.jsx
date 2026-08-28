@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Menu, X, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ track }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,7 +71,7 @@ export default function Navbar() {
               mobileMenuOpen || isScrolled ? 'text-ink' : 'text-snow'
             }`}
           >
-            D<span className="text-coral">.</span>A<span className="text-coral">.</span>
+            A<span className="text-coral">.</span>D<span className="text-coral">.</span>
           </span>
           <span
             className={`hidden sm:inline-block mono-label text-xs tracking-wider px-2.5 py-0.5 rounded-full border transition-colors ${
@@ -100,8 +101,22 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Action Button & Mobile Trigger */}
+        {/* Action Button, Switcher & Mobile Trigger */}
         <div className="flex items-center gap-3">
+          {track && (
+            <Link
+              to={track === 'network' ? '/dev-ia' : '/reseaux-telecoms'}
+              className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${
+                mobileMenuOpen || isScrolled
+                  ? 'border-ink/10 text-graphite hover:text-coral hover:bg-snow-2'
+                  : 'border-white/15 text-snow/80 hover:text-snow hover:bg-white/5'
+              }`}
+            >
+              Vers profil {track === 'network' ? 'Dev & IA' : 'Réseaux'}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          )}
+
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
@@ -141,7 +156,7 @@ export default function Navbar() {
           ))}
 
           <div className="mt-3 pt-3 border-t border-ink/10 flex items-center justify-between px-2 text-xs mono-label text-graphite-muted">
-            <span>DODI · Portfolio 2026</span>
+            <span>Adriano Dodo · Portfolio 2026</span>
             <span className="text-coral">Cotonou, Bénin</span>
           </div>
         </div>

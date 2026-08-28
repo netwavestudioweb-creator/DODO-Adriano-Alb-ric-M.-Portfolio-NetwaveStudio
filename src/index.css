@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Dev & IA (Orange/Rouge - Coral) default */
+    --color-accent: 232 99 74; /* #E8634A */
+    --color-accent-hover: 216 83 58; /* #D8533A */
+    --color-accent-soft: 243 217 210; /* #F3D9D2 */
+  }
+
+  .theme-network {
+    /* Réseaux & Télécoms (Bleu/Gris) */
+    --color-accent: 59 130 246; /* #3B82F6 */
+    --color-accent-hover: 37 99 235; /* #2563EB */
+    --color-accent-soft: 219 234 254; /* #DBEAFE */
+  }
+
   html {
     scroll-behavior: smooth;
     color-scheme: light;
@@ -15,13 +29,13 @@
   }
 
   ::selection {
-    background-color: #E8634A;
+    background-color: rgb(var(--color-accent));
     color: #FAFAFA;
   }
 
   /* Accessible focus states */
   *:focus-visible {
-    outline: 2px solid #E8634A;
+    outline: 2px solid rgb(var(--color-accent));
     outline-offset: 3px;
   }
 }
@@ -126,4 +140,47 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Scramble Text Effect (Dev Track) */
+.scramble-hover:hover {
+  animation: scramble-text 0.4s steps(4) forwards;
+}
+
+@keyframes scramble-text {
+  0% { opacity: 0.8; filter: blur(2px); transform: skewX(10deg); }
+  25% { opacity: 1; filter: blur(0px); transform: skewX(-10deg); }
+  50% { filter: blur(1px); transform: skewX(5deg); }
+  100% { opacity: 1; filter: blur(0px); transform: skewX(0deg); }
+}
+
+/* Staggered Word Fade Up */
+.word-stagger {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-up-word 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+@keyframes fade-up-word {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide Hint Animation for Draggable Cursor */
+.animate-slide-hint {
+  animation: slide-hint 2s ease-in-out infinite;
+}
+
+@keyframes slide-hint {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }

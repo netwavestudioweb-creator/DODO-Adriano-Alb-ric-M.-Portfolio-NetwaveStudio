@@ -4,30 +4,35 @@
       "name": "Réseaux & Télécoms",
       "percentage": 95,
       "summary": "Infrastructures d'entreprise, téléphonie VoIP, liaisons sécurisées et raccordement fibre.",
-      "tag": "Cœur de Métier"
-    },
-    {
-      "name": "Développement Web",
-      "percentage": 90,
-      "summary": "Sites vitrines, boutiques e-commerce rapides et applications sur-mesure.",
-      "tag": "Production"
-    },
-    {
-      "name": "Automatisation & IA",
-      "percentage": 85,
-      "summary": "Agents vocaux conversationnels, assistants WhatsApp et workflows sans friction.",
-      "tag": "Innovation"
+      "tag": "Cœur de Métier",
+      "track": ["network"]
     },
     {
       "name": "Infrastructure & Systèmes",
       "percentage": 80,
       "summary": "Déploiement de serveurs, surveillance continue et haute disponibilité.",
-      "tag": "Fiabilité"
+      "tag": "Fiabilité",
+      "track": ["network"]
+    },
+    {
+      "name": "Développement Web",
+      "percentage": 90,
+      "summary": "Sites vitrines, boutiques e-commerce rapides et applications sur-mesure.",
+      "tag": "Production",
+      "track": ["dev"]
+    },
+    {
+      "name": "Automatisation & IA",
+      "percentage": 85,
+      "summary": "Agents vocaux conversationnels, assistants WhatsApp et workflows sans friction.",
+      "tag": "Innovation",
+      "track": ["dev"]
     }
   ],
   "categories": [
     {
       "title": "Réseaux & Télécoms",
+      "track": ["network"],
       "skills": [
         "Infrastructures réseau d'entreprise",
         "Téléphonie VoIP professionnelle",
@@ -36,7 +41,18 @@
       ]
     },
     {
+      "title": "Systèmes & Disponibilité",
+      "track": ["network"],
+      "skills": [
+        "Configuration et gestion de serveurs",
+        "Surveillance et diagnostic d'incidents",
+        "Sécurisation des accès et sauvegardes",
+        "Continuité d'activité sans coupure"
+      ]
+    },
+    {
       "title": "Développement Web",
+      "track": ["dev"],
       "skills": [
         "Sites vitrines et boutiques en ligne",
         "Interfaces réactives optimisées 3G/4G",
@@ -46,20 +62,12 @@
     },
     {
       "title": "Intelligence Artificielle",
+      "track": ["dev"],
       "skills": [
         "Centres d'appels et agents vocaux 24/7",
         "Automatisation de processus métier",
         "Assistants conversationnels WhatsApp",
         "Traitement et analyse de données"
-      ]
-    },
-    {
-      "title": "Systèmes & Disponibilité",
-      "skills": [
-        "Configuration et gestion de serveurs",
-        "Surveillance et diagnostic d'incidents",
-        "Sécurisation des accès et sauvegardes",
-        "Continuité d'activité sans coupure"
       ]
     }
   ]

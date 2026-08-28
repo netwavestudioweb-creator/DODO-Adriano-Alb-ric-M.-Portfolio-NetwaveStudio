@@ -1,6 +1,7 @@
 [
   {
     "id": "alkareem",
+    "track": ["dev"],
     "name": "Alkareem Parfumerie",
     "category": "E-Commerce & Lovable",
     "year": "2024",
@@ -8,21 +9,37 @@
     "description": "Plateforme e-commerce performante intégrant un catalogue riche de 500 références, recherche temps réel, filtrage multi-critères, panel administrateur et optimisation du premier rendu (réduit de 3-6s à ~1s sur réseau 3G).",
     "stack": ["Lovable", "React", "TypeScript", "Tailwind CSS", "WhatsApp API"],
     "image": "/ideas/original-a1ccb31b4d908f03813c55efba5e7a7c.webp",
-    "metrics": "TTFB 3G : ~1s (-75%)"
+    "metrics": "TTFB 3G : ~1s (-75%)",
+    "githubUrl": "https://github.com/dodi-ad"
   },
   {
-    "id": "adjoua",
-    "name": "Adjoua — Assistant Vocal IA",
-    "category": "Télécoms & IA Vocale",
+    "id": "adjoua-infra",
+    "track": ["network"],
+    "name": "Adjoua — Infrastructure Edge VoIP",
+    "category": "Télécoms & Réseaux",
     "year": "2024",
-    "tagline": "Centre d'appels automatisé par IA pour le milieu hospitalier (CHUC).",
-    "description": "Infrastructure hybride edge/cloud combinant Raspberry Pi 3B, VPS Contabo et tunnel WireGuard sécurisé. Serveur Asterisk 22.10.1 recompilé avec support ARI/PJSIP, interfaçage SFTP et génération automatique de rapports techniques médicaux.",
-    "stack": ["Asterisk 22", "ARI / PJSIP", "Raspberry Pi", "WireGuard", "Python", "Pandoc"],
+    "tagline": "Infrastructure edge hybride pour centre d'appels médical.",
+    "description": "Déploiement d'une architecture VoIP sur site (Raspberry Pi 3B) avec tunnel WireGuard vers un VPS Contabo. Serveur Asterisk 22.10.1 recompilé avec support ARI/PJSIP, interfaçage SFTP pour transfert sécurisé et monitoring temps réel.",
+    "stack": ["Asterisk 22", "Raspberry Pi", "WireGuard", "Debian", "Bash", "Réseau LAN/WAN"],
     "image": "/ideas/9881a74dc6d139d97f01335ee37bad63.webp",
     "metrics": "Disponibilité 99.9% Edge"
   },
   {
+    "id": "adjoua-ia",
+    "track": ["dev"],
+    "name": "Adjoua — Assistant Vocal Médical IA",
+    "category": "IA Vocale & Automatisation",
+    "year": "2024",
+    "tagline": "Agent conversationnel IA intégré à une ligne VoIP hospitalière.",
+    "description": "Pipeline logiciel d'IA vocale s'interfaçant avec Asterisk via ARI. Intègre un STT rapide, traitement du langage naturel par LLM et synthèse vocale TTS pour accueillir les patients. Génération automatisée de rapports via Python et Pandoc.",
+    "stack": ["Python", "Asterisk ARI", "LLM", "Pandoc", "WebSockets"],
+    "image": "/ideas/9881a74dc6d139d97f01335ee37bad63.webp",
+    "metrics": "Génération rapports < 2s",
+    "githubUrl": "https://github.com/dodi-ad/adjoua-ia"
+  },
+  {
     "id": "sofia",
+    "track": ["dev-archive"],
     "name": "Sofia — Call Center Bancaire IA",
     "category": "IA & VoIP Asterisk",
     "year": "2024",
@@ -30,10 +47,12 @@
     "description": "Pipeline vocal Python complet intégrant Groq Whisper (STT ultra-faible latence), LLaMA 3.3 (LLM) et ElevenLabs (TTS). Détection de barge-in en direct, cache audio multi-niveaux, stockage PostgreSQL, file d'attente Redis et dashboard de supervision Flask.",
     "stack": ["Groq Whisper", "LLaMA 3.3", "ElevenLabs", "Asterisk ARI", "PostgreSQL", "Redis", "Flask"],
     "image": "/ideas/4966e1130217ee2de137c8c1d1b3ec2f.webp",
-    "metrics": "Latence vocale < 700ms"
+    "metrics": "Latence vocale < 700ms",
+    "githubUrl": "https://github.com/dodi-ad"
   },
   {
     "id": "scraper-legende",
+    "track": ["dev"],
     "name": "Scraper Légende",
     "category": "Data Engineering & SaaS",
     "year": "2023",
@@ -41,10 +60,12 @@
     "description": "Outil d'automatisation et de scraping connecté à 11 plateformes pour détecter les opportunités SaaS émergentes. Algorithme de scoring d'opportunités, déduplication avancée, base PostgreSQL, interface Flask et génération de business cases automatisés.",
     "stack": ["Python", "11 Connecteurs API", "PostgreSQL", "Flask", "Data Scoring"],
     "image": "/ideas/9ca31649e069a7a5caaa199bc0343937.webp",
-    "metrics": "11 sources automatisées"
+    "metrics": "11 sources automatisées",
+    "githubUrl": "https://github.com/dodi-ad"
   },
   {
     "id": "qr-commande",
+    "track": ["dev-archive"],
     "name": "Système de Commande QR Code",
     "category": "Web App & Fintech",
     "year": "2023",
@@ -56,6 +77,7 @@
   },
   {
     "id": "multi-agents",
+    "track": ["dev-archive"],
     "name": "Architecture Multi-Agents",
     "category": "Automatisation & IA",
     "year": "2024",

@@ -11,8 +11,10 @@ const iconMap = {
   Palette: Palette,
 };
 
-export default function Services() {
+export default function Services({ track }) {
   const [expanded, setExpanded] = useState({});
+
+  const filteredServices = track ? servicesData.filter(s => s.track.includes(track)) : servicesData;
 
   const toggleService = (id) => {
     setExpanded((prev) => ({
@@ -44,9 +46,9 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid (6 cards) */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-          {servicesData.map((srv, idx) => {
+          {filteredServices.map((srv, idx) => {
             const Icon = iconMap[srv.icon] || Network;
             const isExpanded = !!expanded[srv.id];
 

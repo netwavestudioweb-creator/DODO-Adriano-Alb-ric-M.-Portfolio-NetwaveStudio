@@ -70,7 +70,7 @@ export default function Contact() {
             Échangeons ensemble<span className="text-coral">.</span>
           </h2>
           <p className="text-snow/70 text-base md:text-lg font-normal leading-relaxed">
-            Vous recherchez un Technicien Réseaux & Télécoms, un Développeur Web ou un Architecte IA pour un poste, une mission freelance ou un projet ? N'hésitez pas à me contacter.
+            Prêt à collaborer sur vos enjeux d'infrastructure ou de développement ? Discutons de votre projet.
           </p>
         </div>
 
@@ -141,7 +141,7 @@ export default function Contact() {
                   Message envoyé avec succès !
                 </h3>
                 <p className="text-sm text-snow/70 max-w-sm mx-auto">
-                  Merci ! DODI prendra connaissance de votre message et vous recontactera sous 24h.
+                  Merci ! Je prendrai connaissance de votre message et vous recontacterai sous 24h.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -213,7 +213,7 @@ export default function Contact() {
                   type="submit"
                   className="btn-magnetic w-full py-4 px-8 rounded-full bg-coral hover:bg-coral-hover text-snow font-bold text-sm md:text-base shadow-coral-glow flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Envoyer votre message</span>
+                  <span>Envoyer</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>
