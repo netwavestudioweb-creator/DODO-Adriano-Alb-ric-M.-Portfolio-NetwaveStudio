@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 import Hub from './pages/Hub';
 import TrackLayout from './layouts/TrackLayout';
 import TrackPage from './pages/TrackPage';
+import Loader from './components/Loader';
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,14 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <HelmetProvider>
-      <RouterProvider router={router} />
+      {loading && <Loader onComplete={() => setLoading(false)} />}
+      <div className={loading ? 'pointer-events-none' : ''}>
+        <RouterProvider router={router} />
+      </div>
     </HelmetProvider>
   );
 }
