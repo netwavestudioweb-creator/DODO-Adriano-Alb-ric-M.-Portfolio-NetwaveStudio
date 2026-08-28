@@ -12,6 +12,18 @@ export default function Hub() {
 
   const [isMobile, setIsMobile] = useState(false);
 
+  const fullName = "ADRIANO DODO";
+  const [textIndex, setTextIndex] = useState(0);
+
+  useEffect(() => {
+    if (textIndex < fullName.length) {
+      const timeout = setTimeout(() => {
+        setTextIndex(prev => prev + 1);
+      }, 120); // ms par lettre
+      return () => clearTimeout(timeout);
+    }
+  }, [textIndex, fullName.length]);
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
@@ -148,7 +160,8 @@ export default function Hub() {
         {/* BRANDING BACK (WHITE TEXT) */}
         <div className={`absolute inset-x-0 bottom-10 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
           <h1 className="font-extrabold text-[12vw] md:text-[8vw] tracking-tighter whitespace-nowrap text-white drop-shadow-2xl">
-            ADRIANO DODO<span className="text-[#E8634A]">.</span>
+            {fullName.slice(0, textIndex)}
+            {textIndex === fullName.length && <span className="text-[#E8634A] animate-pulse">.</span>}
           </h1>
         </div>
 
@@ -160,9 +173,12 @@ export default function Hub() {
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/[0.03] border border-white/10 shadow-2xl flex items-center justify-center mb-6 group-hover:shadow-[0_0_30px_rgba(232,99,74,0.3)] transition-all duration-500">
             <Code2 className="w-6 h-6 md:w-8 md:h-8 text-[#E8634A]" />
           </div>
-          <h2 className="font-extrabold text-2xl md:text-3xl lg:text-4xl tracking-tight mb-2 group-hover:text-[#E8634A] transition-colors duration-500 leading-tight">
-            Développement<br/>Web & IA
+          <h2 className="font-extrabold text-2xl md:text-3xl lg:text-4xl tracking-tight mb-4 group-hover:text-[#E8634A] transition-colors duration-500 leading-tight">
+            Développement Web & IA
           </h2>
+          <p className="text-snow/60 text-xs md:text-sm max-w-xs font-medium">
+            Applications sur-mesure et architectures intelligentes.
+          </p>
         </div>
       </div>
 
@@ -180,7 +196,8 @@ export default function Hub() {
         {/* BRANDING FRONT (DARK TEXT) */}
         <div className={`absolute inset-x-0 bottom-10 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
           <h1 className="font-extrabold text-[12vw] md:text-[8vw] tracking-tighter whitespace-nowrap text-ink drop-shadow-2xl">
-            ADRIANO DODO<span className="text-blue-600">.</span>
+            {fullName.slice(0, textIndex)}
+            {textIndex === fullName.length && <span className="text-blue-600 animate-pulse">.</span>}
           </h1>
         </div>
 
@@ -192,9 +209,12 @@ export default function Hub() {
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white border border-ink/10 shadow-xl flex items-center justify-center mb-6 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.2)] transition-all duration-500">
             <Network className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
           </div>
-          <h2 className="font-extrabold text-2xl md:text-3xl lg:text-4xl tracking-tight mb-2 group-hover:text-blue-600 transition-colors duration-500 leading-tight">
-            Réseaux &<br/>Télécoms
+          <h2 className="font-extrabold text-2xl md:text-3xl lg:text-4xl tracking-tight mb-4 group-hover:text-blue-600 transition-colors duration-500 leading-tight">
+            Réseaux & Télécoms
           </h2>
+          <p className="text-graphite-muted text-xs md:text-sm max-w-xs font-medium">
+            Infrastructures d'entreprise et téléphonie VoIP.
+          </p>
         </div>
       </div>
     </div>
