@@ -77,14 +77,20 @@ export default function Hub() {
 
   const leftClip = isMobile ? topClipMobile : leftClipDesktop;
 
-  // ANIMATION OPACITIES
-  // Dev (Right/Bottom): Fades out as slider moves right (slider > 50)
-  const devOpacity = Math.max(0, Math.min(1, (100 - sliderPosition) / 50));
-  const devScale = 1 + Math.max(0, (50 - sliderPosition) / 300); // slightly grows when dragging towards 0
+  // ANIMATION OPACITIES & POSITIONS
+  // Dev (Right/Bottom)
+  const devOpacity = Math.max(0, Math.min(1, (100 - sliderPosition) / 40));
+  const devScale = 1 + Math.max(0, (50 - sliderPosition) / 300);
+  const devX = isMobile ? 0 : sliderPosition / 2.2;
+  const devY = isMobile ? sliderPosition / 2.2 : 0;
+  const devTransform = `translate(${devX}vw, ${devY}vh) scale(${devScale})`;
   
-  // Network (Left/Top): Fades out as slider moves left (slider < 50)
-  const networkOpacity = Math.max(0, Math.min(1, sliderPosition / 50));
+  // Network (Left/Top)
+  const networkOpacity = Math.max(0, Math.min(1, sliderPosition / 40));
   const networkScale = 1 + Math.max(0, (sliderPosition - 50) / 300);
+  const networkX = isMobile ? 0 : (sliderPosition - 100) / 2.2;
+  const networkY = isMobile ? (sliderPosition - 100) / 2.2 : 0;
+  const networkTransform = `translate(${networkX}vw, ${networkY}vh) scale(${networkScale})`;
 
   return (
     <div 
@@ -140,16 +146,16 @@ export default function Hub() {
         <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#E8634A]/20 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000 ease-out" />
         
         {/* BRANDING BACK (WHITE TEXT) */}
-        <div className={`absolute inset-0 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
-          <h1 className="font-extrabold text-[11vw] md:text-6xl lg:text-7xl xl:text-8xl tracking-tighter whitespace-nowrap text-white drop-shadow-2xl">
+        <div className={`absolute inset-x-0 bottom-10 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
+          <h1 className="font-extrabold text-[12vw] md:text-[8vw] tracking-tighter whitespace-nowrap text-white drop-shadow-2xl">
             ADRIANO DODO<span className="text-[#E8634A]">.</span>
           </h1>
         </div>
 
         {/* Content Wrapper */}
         <div 
-          className={`relative z-10 p-8 w-full max-w-lg flex flex-col items-center text-center md:ml-[30vw] md:mt-[20vh] mt-[35vh]`}
-          style={{ opacity: devOpacity, transform: `scale(${devScale})` }}
+          className={`relative z-10 p-8 w-full max-w-lg flex flex-col items-center text-center ${isDragging ? '' : 'transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]'}`}
+          style={{ opacity: devOpacity, transform: devTransform }}
         >
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/[0.03] border border-white/10 shadow-2xl flex items-center justify-center mb-6 group-hover:shadow-[0_0_30px_rgba(232,99,74,0.3)] transition-all duration-500">
             <Code2 className="w-6 h-6 md:w-8 md:h-8 text-[#E8634A]" />
@@ -172,16 +178,16 @@ export default function Hub() {
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000 ease-out" />
 
         {/* BRANDING FRONT (DARK TEXT) */}
-        <div className={`absolute inset-0 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
-          <h1 className="font-extrabold text-[11vw] md:text-6xl lg:text-7xl xl:text-8xl tracking-tighter whitespace-nowrap text-ink drop-shadow-2xl">
+        <div className={`absolute inset-x-0 bottom-10 pointer-events-none z-[20] flex items-center justify-center transition-opacity duration-700 ${transitionState ? 'opacity-0' : 'opacity-100'}`}>
+          <h1 className="font-extrabold text-[12vw] md:text-[8vw] tracking-tighter whitespace-nowrap text-ink drop-shadow-2xl">
             ADRIANO DODO<span className="text-blue-600">.</span>
           </h1>
         </div>
 
         {/* Content Wrapper */}
         <div 
-          className={`relative z-10 p-8 w-full max-w-lg flex flex-col items-center text-center md:mr-[30vw] md:mb-[20vh] mb-[35vh]`}
-          style={{ opacity: networkOpacity, transform: `scale(${networkScale})` }}
+          className={`relative z-10 p-8 w-full max-w-lg flex flex-col items-center text-center ${isDragging ? '' : 'transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]'}`}
+          style={{ opacity: networkOpacity, transform: networkTransform }}
         >
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white border border-ink/10 shadow-xl flex items-center justify-center mb-6 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.2)] transition-all duration-500">
             <Network className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
