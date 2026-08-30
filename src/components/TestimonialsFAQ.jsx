@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import faqData from '../data/faq.json';
 import { ChevronDown, MessageSquareQuote, HelpCircle, Sparkles, Clock } from 'lucide-react';
 
-export default function TestimonialsFAQ() {
+export default function TestimonialsFAQ({ track }) {
   const [openFaq, setOpenFaq] = useState(0);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const getFaqAnswer = (item, idx) => {
+    if (idx === 0 && track === 'dev') {
+      return "Je suis ouvert aux opportunités en entreprise (CDI / CDD), aux contrats de prestation freelance et aux missions de conseil technique. J'interviens sur site au Bénin/Afrique de l'Ouest et à distance (collaboration orale en français, documentation et échanges écrits en anglais).";
+    }
+    return item.answer;
   };
 
   return (
@@ -15,7 +22,7 @@ export default function TestimonialsFAQ() {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          {/* Left Column: Elegant Empty Testimonials State */}
+          {/* Left Column: Testimonials */}
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
@@ -27,7 +34,9 @@ export default function TestimonialsFAQ() {
             </h2>
 
             <p className="text-graphite-muted text-sm leading-relaxed">
-              La satisfaction des clients repose sur la stabilité des infrastructures livrées et la transparence technique.
+              {track === 'dev'
+                ? "La satisfaction de mes clients repose sur la robustesse des applications livrées, la fluidité logicielle et la transparence technique."
+                : "La satisfaction des clients repose sur la stabilité des infrastructures livrées et la transparence technique."}
             </p>
 
             {/* Testimonials Proof Cards */}
@@ -56,7 +65,9 @@ export default function TestimonialsFAQ() {
                 <div className="flex items-center justify-between border-t border-ink/5 pt-3">
                   <div>
                     <h4 className="font-sans font-bold text-xs text-ink">Projet Adjoua — CHUC</h4>
-                    <p className="text-[10px] text-graphite-muted">Infrastructure Télécoms & IA Vocale</p>
+                    <p className="text-[10px] text-graphite-muted">
+                      {track === 'dev' ? 'Assistant Vocal IA' : 'Infrastructure Télécoms & IA Vocale'}
+                    </p>
                   </div>
                   <span className="mono-label text-[10px] text-coral font-semibold bg-coral-soft/40 px-2.5 py-0.5 rounded-full">
                     Disponibilité 99.9%
@@ -80,6 +91,7 @@ export default function TestimonialsFAQ() {
             <div className="space-y-4">
               {faqData.map((item, idx) => {
                 const isOpen = openFaq === idx;
+                const answer = getFaqAnswer(item, idx);
 
                 return (
                   <div
@@ -105,7 +117,7 @@ export default function TestimonialsFAQ() {
 
                     {isOpen && (
                       <div className="px-6 pb-6 pt-1 text-sm text-graphite leading-relaxed border-t border-ink/5">
-                        <p>{item.answer}</p>
+                        <p>{answer}</p>
                       </div>
                     )}
                   </div>

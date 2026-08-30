@@ -9,7 +9,7 @@ const LinkedInIcon = ({ className }) => (
   </svg>
 );
 
-export default function Contact() {
+export default function Contact({ track }) {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -61,16 +61,22 @@ export default function Contact() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
         
         {/* Main Section Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
-            <span className="w-2 h-2 rounded-full bg-coral inline-block" />
-            Contact & Opportunités
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+          <div>
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+              <span className="w-2 h-2 rounded-full bg-coral inline-block" />
+              Contact & Opportunités
+            </div>
+            <h2 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-snow leading-[0.95]">
+              Échangeons ensemble<span className="text-coral">.</span>
+            </h2>
           </div>
-          <h2 className="font-sans font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-snow leading-[0.95] mb-6">
-            Échangeons ensemble<span className="text-coral">.</span>
-          </h2>
-          <p className="text-snow/70 text-base md:text-lg font-normal leading-relaxed">
-            Prêt à collaborer sur vos enjeux d'infrastructure ou de développement ? Discutons de votre projet.
+          <p className="text-snow/70 max-w-md text-sm md:text-base font-normal leading-relaxed">
+            {track === 'dev'
+              ? "Prêt à collaborer sur vos enjeux de développement web, d'architecture logicielle ou d'intégration IA ? Discutons de votre projet."
+              : track === 'network'
+              ? "Prêt à collaborer sur vos enjeux d'infrastructure réseau, de sécurité ou de téléphonie VoIP ? Discutons de votre projet."
+              : "Prêt à collaborer sur vos enjeux d'infrastructure ou de développement ? Discutons de votre projet."}
           </p>
         </div>
 

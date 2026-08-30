@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/reseaux-telecoms',
-    element: <TrackLayout track="network" title="DODI | Réseaux & Télécoms" description="Expertise en infrastructures d'entreprise, téléphonie VoIP et réseaux." />,
+    element: <TrackLayout track="network" title="DODI | Technicien Réseaux, Télécoms & Infrastructure" description="Portfolio de DODO Albéric Mantey Adriano (DODI) — Technicien Réseaux & Télécoms (Infrastructures LAN/WAN, Téléphonie VoIP Asterisk, Tunnels WireGuard, Linux, Sécurité)." />,
     children: [
       {
         index: true,
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dev-ia',
-    element: <TrackLayout track="dev" title="DODI | Développement Web & IA" description="Création d'applications web modernes et d'agents vocaux IA." />,
+    element: <TrackLayout track="dev" title="DODI | Développeur Full-Stack Web & IA" description="Portfolio de DODO Albéric Mantey Adriano (DODI) — Développeur Full-Stack Web & Architecte de solutions IA (React, Python, n8n, Groq Whisper, LLaMA, Asterisk ARI)." />,
     children: [
       {
         index: true,

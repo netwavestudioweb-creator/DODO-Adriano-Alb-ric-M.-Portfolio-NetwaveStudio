@@ -48,14 +48,14 @@ export default function Navbar({ track }) {
 
   return (
     <header
-      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl transition-all duration-500 ease-out ${
+      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl transition-all duration-300 ease-out ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0 pointer-events-none'
       } ${
         mobileMenuOpen
-          ? 'rounded-[2rem] bg-white border border-ink/15 shadow-2xl p-5 text-ink'
+          ? 'rounded-[2rem] bg-white/95 backdrop-blur-xl border border-ink/15 shadow-2xl p-5 text-ink'
           : isScrolled
-          ? 'rounded-full bg-white border border-ink/10 shadow-[0_12px_40px_rgba(0,0,0,0.14)] py-2.5 px-4 md:px-6'
-          : 'rounded-full bg-ink/40 backdrop-blur-md border border-white/10 py-3.5 px-5 md:px-7'
+          ? 'rounded-full bg-white/90 backdrop-blur-xl border border-ink/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] py-2.5 px-4 md:px-6'
+          : 'rounded-full bg-ink/60 backdrop-blur-xl border border-white/15 shadow-[0_16px_36px_rgba(0,0,0,0.35)] py-3 px-5 md:px-7'
       }`}
     >
       <div className="flex items-center justify-between w-full">
@@ -73,15 +73,17 @@ export default function Navbar({ track }) {
           >
             A<span className="text-coral">.</span>D<span className="text-coral">.</span>
           </span>
-          <span
-            className={`hidden sm:inline-block mono-label text-xs tracking-wider px-2.5 py-0.5 rounded-full border transition-colors ${
-              mobileMenuOpen || isScrolled
-                ? 'border-ink/10 text-graphite-muted bg-snow-2 hover:text-coral'
-                : 'border-white/15 text-snow/60 bg-white/5 hover:text-snow'
-            }`}
-          >
-            Fondateur NetWave Studio
-          </span>
+          {!track && (
+            <span
+              className={`hidden sm:inline-block mono-label text-xs tracking-wider px-2.5 py-0.5 rounded-full border transition-colors ${
+                mobileMenuOpen || isScrolled
+                  ? 'border-ink/10 text-graphite-muted bg-snow-2 hover:text-coral'
+                  : 'border-white/15 text-snow/60 bg-white/5 hover:text-snow'
+              }`}
+            >
+              Fondateur NetWave Studio
+            </span>
+          )}
         </a>
 
         {/* Desktop Nav */}
@@ -101,30 +103,16 @@ export default function Navbar({ track }) {
           ))}
         </nav>
 
-        {/* Action Button, Switcher & Mobile Trigger */}
-        <div className="flex items-center gap-3">
-          {track && (
-            <Link
-              to={track === 'network' ? '/dev-ia' : '/reseaux-telecoms'}
-              className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${
-                mobileMenuOpen || isScrolled
-                  ? 'border-ink/10 text-graphite hover:text-coral hover:bg-snow-2'
-                  : 'border-white/15 text-snow/80 hover:text-snow hover:bg-white/5'
-              }`}
+          {/* Action Button & Mobile Trigger */}
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-magnetic inline-flex items-center gap-1.5 bg-coral hover:bg-coral-hover text-white text-xs md:text-sm font-semibold py-2 px-4 md:px-5 rounded-full shadow-coral-glow"
             >
-              Vers profil {track === 'network' ? 'Dev & IA' : 'Réseaux'}
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          )}
-
-          <a
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="btn-magnetic inline-flex items-center gap-1.5 bg-coral hover:bg-coral-hover text-white text-xs md:text-sm font-semibold py-2 px-4 md:px-5 rounded-full shadow-coral-glow"
-          >
-            <span>Me contacter</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+              <span>Me contacter</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

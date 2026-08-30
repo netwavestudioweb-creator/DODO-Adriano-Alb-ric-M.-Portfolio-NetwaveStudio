@@ -42,39 +42,44 @@ export default function Services({ track }) {
             </h2>
           </div>
           <p className="text-snow/70 max-w-md text-sm md:text-base font-normal leading-relaxed">
-            Des infrastructures réseau robustes, des plateformes web optimisées et des pipelines vocaux IA adaptés au terrain.
+            {track === 'dev'
+              ? "Des plateformes web performantes, des architectures logicielles scalables et des agents vocaux IA sur-mesure."
+              : track === 'network'
+              ? "Des infrastructures réseau robustes, des liaisons sécurisées et des solutions de téléphonie VoIP haute disponibilité."
+              : "Des infrastructures réseau robustes, des plateformes web optimisées et des pipelines vocaux IA adaptés au terrain."}
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+        {/* Services Grid (4 Pillars aligned horizontally) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {filteredServices.map((srv, idx) => {
             const Icon = iconMap[srv.icon] || Network;
             const isExpanded = !!expanded[srv.id];
+            const numLabel = String(idx + 1).padStart(2, '0');
 
             return (
               <div
                 key={srv.id || idx}
-                className="card-premium group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-coral/40 rounded-[2.5rem] p-7 md:p-8 flex flex-col justify-between backdrop-blur-sm transition-all duration-300 shadow-card"
+                className="card-premium group relative bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-coral/40 rounded-[2.5rem] p-6 md:p-7 flex flex-col justify-between backdrop-blur-sm transition-all duration-300 shadow-card h-full"
               >
-                <div>
+                <div className="flex-1 flex flex-col">
                   {/* Top Bar: Icon + Number */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-coral group-hover:bg-coral group-hover:text-white transition-colors duration-300">
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="mono-label text-xs text-white/30 font-medium">
-                      {srv.num}
+                      {numLabel}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-sans font-bold text-xl text-snow mb-3 group-hover:text-coral transition-colors">
+                  <h3 className="font-sans font-bold text-lg text-snow mb-3 group-hover:text-coral transition-colors min-h-[3.5rem] flex items-center">
                     {srv.title}
                   </h3>
 
                   {/* Accessible non-technical description */}
-                  <p className="text-xs md:text-sm text-snow/70 leading-relaxed font-normal mb-6">
+                  <p className="text-xs text-snow/70 leading-relaxed font-normal mb-6 flex-1">
                     {srv.description}
                   </p>
 
@@ -82,8 +87,8 @@ export default function Services({ track }) {
                   {isExpanded && (
                     <div className="mt-4 pt-4 border-t border-white/10 space-y-4 animate-fadeIn">
                       {/* What's included */}
-                      <div className="text-xs text-snow/90 leading-relaxed bg-white/[0.03] p-3.5 rounded-2xl border border-white/5">
-                        <strong className="text-coral block mono-label text-[11px] uppercase tracking-wider mb-1">
+                      <div className="text-xs text-snow/90 leading-relaxed bg-white/[0.03] p-3 rounded-2xl border border-white/5">
+                        <strong className="text-coral block mono-label text-[10px] uppercase tracking-wider mb-1">
                           Inclus dans la prestation :
                         </strong>
                         <p>{srv.included}</p>
@@ -92,13 +97,13 @@ export default function Services({ track }) {
                       {/* Tech Stack Pills */}
                       <div>
                         <span className="mono-label text-[10px] uppercase text-white/50 block mb-2">
-                          Technologies & Outils :
+                          Technologies :
                         </span>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-1">
                           {srv.tags.map((tag, i) => (
                             <span
                               key={i}
-                              className="mono-label text-[10px] bg-white/[0.06] border border-white/10 text-coral-soft px-2.5 py-0.5 rounded-full"
+                              className="mono-label text-[9px] bg-white/[0.06] border border-white/10 text-coral-soft px-2 py-0.5 rounded-full"
                             >
                               {tag}
                             </span>
@@ -107,7 +112,7 @@ export default function Services({ track }) {
                       </div>
 
                       {/* Concrete Proof / Case Study */}
-                      <div className="p-3.5 rounded-2xl bg-coral/10 border border-coral/20 text-xs text-coral-soft">
+                      <div className="p-3 rounded-2xl bg-coral/10 border border-coral/20 text-xs text-coral-soft">
                         <p className="leading-relaxed">
                           <strong className="text-white block font-semibold mb-0.5">Preuve terrain :</strong>
                           {srv.proof}
@@ -124,14 +129,14 @@ export default function Services({ track }) {
                     className="inline-flex items-center gap-1.5 text-xs mono-label uppercase tracking-wider font-semibold text-coral hover:text-white transition-colors cursor-pointer"
                     aria-expanded={isExpanded}
                   >
-                    <span>{isExpanded ? 'Réduire' : 'En savoir plus'}</span>
+                    <span>{isExpanded ? 'Réduire' : 'Détails'}</span>
                     {isExpanded ? (
                       <ChevronUp className="w-3.5 h-3.5" />
                     ) : (
                       <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                     )}
                   </button>
-                  <span className="mono-label text-[10px] text-white/30">NetWave</span>
+                  <span className="mono-label text-[10px] text-white/30">{numLabel}</span>
                 </div>
               </div>
             );

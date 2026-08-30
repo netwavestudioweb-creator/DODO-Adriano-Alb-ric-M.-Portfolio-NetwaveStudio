@@ -1,17 +1,8 @@
 import React from 'react';
-import { Network, Bot, Globe, Shield, Award, BookOpen, Languages, Sparkles } from 'lucide-react';
+import { Network, Bot, Globe, Shield, Award, BookOpen, Languages, Sparkles, Code2 } from 'lucide-react';
 
 export default function About({ track }) {
-  const experiences = [
-    {
-      role: 'Fondateur & Lead Tech',
-      company: 'NetWave Studio',
-      period: '2023 – Présent',
-      location: 'Freelance (Fiverr, Upwork & Direct)',
-      description:
-        "Conception de sites web, d'applications sur-mesure et de solutions réseaux pour PME locales et internationales. Architectures d'automatisation et outils numériques adaptés aux besoins de chaque client.",
-      stack: ['Lovable', 'React/TS', 'n8n', 'Asterisk ARI', 'PostgreSQL', 'Docker', 'Redis'],
-    },
+  const networkExperiences = [
     {
       role: 'Assistant Chef de Projet Réseaux',
       company: 'SOBAPS — Ministère de la Santé du Bénin',
@@ -30,16 +21,30 @@ export default function About({ track }) {
         'Raccordement d’abonnés en fibre optique, installation et configuration d’équipements d’accès réseau, tests de réflectométrie et validation de la conformité aux normes de qualité.',
       stack: ['Fibre Optique', 'Soudure Optique', 'Configuration Routeurs', 'Normes Télécoms'],
     },
+    {
+      role: 'Fondateur & Lead Tech',
+      company: 'NetWave Studio',
+      period: '2023 – Présent',
+      location: 'Freelance (Fiverr, Upwork & Direct)',
+      description:
+        "Déploiement d'infrastructures réseaux, serveurs VoIP Asterisk, conteneurisation et interconnexions sécurisées pour PME et institutions. Supervision continue et maintien en conditions opérationnelles.",
+      stack: ['Asterisk (PJSIP/ARI)', 'Linux Debian', 'WireGuard / VPN', 'Docker', 'PostgreSQL', 'Redis'],
+    },
   ];
 
-  // Reorder experiences based on track
-  if (track === 'network') {
-    // Put SOBAPS and Premium Company first for network track
-    const netwave = experiences[0];
-    experiences[0] = experiences[1];
-    experiences[1] = experiences[2];
-    experiences[2] = netwave;
-  }
+  const devExperiences = [
+    {
+      role: 'Fondateur & Lead Tech',
+      company: 'NetWave Studio',
+      period: '2023 – Présent',
+      location: 'Freelance (Fiverr, Upwork & Direct)',
+      description:
+        "Conception de sites web, d'applications sur-mesure et de solutions logicielles pour PME locales et internationales. Architectures d'automatisation, intégration IA et outils numériques adaptés aux besoins de chaque client.",
+      stack: ['React/TS', 'Python', 'Node.js', 'PostgreSQL', 'Docker', 'n8n', 'Asterisk ARI'],
+    },
+  ];
+
+  const experiences = track === 'dev' ? devExperiences : networkExperiences;
 
   const education = [
     {
@@ -49,10 +54,10 @@ export default function About({ track }) {
       badge: 'Diplômé',
     },
     {
-      degree: 'Certification Cisco Networking',
+      degree: 'Cursus Réseaux & Fondations IP',
       school: 'Cisco Networking Academy',
-      year: 'Certifié',
-      badge: 'Cisco',
+      year: 'Formation NetAcad',
+      badge: 'Cisco NetAcad',
     },
   ];
 
@@ -60,7 +65,7 @@ export default function About({ track }) {
     { name: 'Français', level: 'Courant / Professionnel', pct: '100%' },
     { name: 'Fon', level: 'Langue maternelle', pct: '100%' },
     { name: 'Mina', level: 'Courant', pct: '100%' },
-    { name: 'Anglais', level: 'Technique & Basique', pct: '60%' },
+    { name: 'Anglais', level: 'Technique & Basique', pct: '50%' },
   ];
 
   return (
@@ -68,14 +73,29 @@ export default function About({ track }) {
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         
         {/* Section Header */}
-        <div className="mb-16 md:mb-24">
-          <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
-            <span className="w-2 h-2 rounded-full bg-coral inline-block" />
-            Profil & Trajectoire
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+          <div>
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+              <span className="w-2 h-2 rounded-full bg-coral inline-block" />
+              Profil & Trajectoire
+            </div>
+            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
+              {track === 'dev' ? (
+                <>
+                  Une rigueur d'ingénierie<span className="text-coral">,</span> appliquée au code<span className="text-coral">.</span>
+                </>
+              ) : (
+                <>
+                  L'exigence d'infrastructure<span className="text-coral">,</span> au service de la résilience<span className="text-coral">.</span>
+                </>
+              )}
+            </h2>
           </div>
-          <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
-            Deux mondes<span className="text-coral">,</span> une même rigueur<span className="text-coral">.</span>
-          </h2>
+          <p className="text-graphite-muted max-w-md text-sm md:text-base font-normal leading-relaxed">
+            {track === 'dev'
+              ? "Allier méthode d'ingénieur rigoureuse, propreté d'architecture logicielle et conception d'outils digitaux à fort impact."
+              : "Allier rigueur d'infrastructure réseau, haute disponibilité et sécurisation périmétrique pour des systèmes pérennes."}
+          </p>
         </div>
 
         {/* Two Columns Grid with Vertical Accent Line */}
@@ -86,17 +106,31 @@ export default function About({ track }) {
             <div className="hidden lg:block absolute top-2 right-0 bottom-2 w-0.5 bg-gradient-to-b from-coral via-coral/40 to-transparent" />
             
             <h3 className="serif-italic text-3xl md:text-4xl text-ink font-normal leading-snug mb-6">
-              "L'infrastructure solide est le socle invisible de toute innovation."
+              {track === 'dev'
+                ? "\"L'alliance du code robuste et de l'intelligence artificielle pour concevoir des solutions performantes et scalables.\""
+                : "\"L'infrastructure solide est le socle invisible de toute innovation.\""}
             </h3>
 
             <div className="space-y-4 text-graphite text-base md:text-lg leading-relaxed font-normal">
-              {track === 'network' 
-                ? "Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et certifié Cisco Networking, je suis spécialisé dans le déploiement d'infrastructures fiables et sécurisées."
-                : "Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et développeur full-stack passionné, je conçois des solutions numériques performantes et des agents intelligents."
-              }
-              <p>
-                À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, mon studio freelance, je conçois des sites web, des applications, des solutions réseaux et des outils d'automatisation pour des PME et institutions ouest-africaines.
-              </p>
+              {track === 'network' ? (
+                <>
+                  <p>
+                    Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et formé via Cisco Networking Academy, je suis spécialisé dans le déploiement d'architectures réseau, de systèmes VoIP et d'infrastructures d'entreprise sécurisées.
+                  </p>
+                  <p>
+                    À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, j'accompagne entreprises et institutions dans l'audit, l'intégration de serveurs Asterisk, le routage inter-sites et le déploiement de liaisons résilientes.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Développeur full-stack et concepteur de solutions logicielles & IA, je conçois des applications web modernes, hautement performantes et des agents conversationnels intelligents.
+                  </p>
+                  <p>
+                    À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, mon studio freelance, j'accompagne entreprises et startups dans la digitalisation de leurs processus métier et le déploiement d'architectures sur-mesure.
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Language Badges */}
@@ -125,7 +159,7 @@ export default function About({ track }) {
             {/* Experience Cards */}
             <div>
               <h4 className="mono-label text-xs uppercase tracking-widest text-graphite-muted mb-6 flex items-center gap-2">
-                <Network className="w-4 h-4 text-coral" />
+                {track === 'dev' ? <Code2 className="w-4 h-4 text-coral" /> : <Network className="w-4 h-4 text-coral" />}
                 Parcours Professionnel
               </h4>
 
@@ -168,39 +202,41 @@ export default function About({ track }) {
               </div>
             </div>
 
-            {/* Education & Certifications */}
-            <div>
-              <h4 className="mono-label text-xs uppercase tracking-widest text-graphite-muted mb-6 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-coral" />
-                Formation & Diplômes
-              </h4>
+            {/* Education & Certifications (Affiché uniquement sur le profil Réseaux) */}
+            {track !== 'dev' && (
+              <div>
+                <h4 className="mono-label text-xs uppercase tracking-widest text-graphite-muted mb-6 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-coral" />
+                  Formation & Diplômes
+                </h4>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {education.map((edu, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border border-ink/10 rounded-2xl p-5 shadow-sm hover:border-coral/40 transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="mono-label text-[11px] text-coral font-medium">
-                          {edu.year}
-                        </span>
-                        <span className="mono-label text-[10px] uppercase tracking-wider bg-coral-soft/50 text-ink px-2 py-0.5 rounded-full">
-                          {edu.badge}
-                        </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {education.map((edu, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white border border-ink/10 rounded-2xl p-5 shadow-sm hover:border-coral/40 transition-all flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="mono-label text-[11px] text-coral font-medium">
+                            {edu.year}
+                          </span>
+                          <span className="mono-label text-[10px] uppercase tracking-wider bg-coral-soft/50 text-ink px-2 py-0.5 rounded-full">
+                            {edu.badge}
+                          </span>
+                        </div>
+                        <h6 className="font-sans font-bold text-sm text-ink leading-snug mb-1">
+                          {edu.degree}
+                        </h6>
                       </div>
-                      <h6 className="font-sans font-bold text-sm text-ink leading-snug mb-1">
-                        {edu.degree}
-                      </h6>
+                      <p className="text-xs text-graphite-muted mt-2">
+                        {edu.school}
+                      </p>
                     </div>
-                    <p className="text-xs text-graphite-muted mt-2">
-                      {edu.school}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
         </div>

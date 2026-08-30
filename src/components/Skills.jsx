@@ -24,37 +24,43 @@ export default function Skills({ track }) {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
-            <span className="w-2 h-2 rounded-full bg-coral inline-block" />
-            Piliers de Compétences
+        {/* Section Header (Horizontal layout: Title left, Subtitle right on same line) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+          <div>
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+              <span className="w-2 h-2 rounded-full bg-coral inline-block" />
+              Piliers de Compétences
+            </div>
+            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-snow tracking-tight">
+              Grille de Maîtrise<span className="text-coral">.</span>
+            </h2>
           </div>
-          <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-snow tracking-tight">
-            Grille de Maîtrise<span className="text-coral">.</span>
-          </h2>
-          <p className="text-snow/70 text-sm md:text-base mt-4 font-normal">
-            Des fondations télécoms solides combinées au développement web et à l'intelligence artificielle.
+          <p className="text-snow/70 max-w-md text-sm md:text-base font-normal leading-relaxed">
+            {track === 'dev'
+              ? "Une expertise pointue en développement web moderne, architecture logicielle et intégration d'intelligence artificielle."
+              : track === 'network'
+              ? "Une expertise complète en infrastructures réseaux, téléphonie VoIP, routage et sécurité des systèmes."
+              : "Des compétences avancées alliant développement web moderne, intelligence artificielle et infrastructures fiables."}
           </p>
         </div>
 
-        {/* 1. Mastery Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+        {/* 1. Mastery Cards (4 Cards Aligned Horizontally) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {filteredMastery.map((item, idx) => {
             const strokeDashoffset = circumference - (item.percentage / 100) * circumference;
 
             return (
               <div
                 key={idx}
-                className="card-premium bg-white/[0.04] border border-white/10 rounded-[2.5rem] p-7 text-center flex flex-col items-center justify-between backdrop-blur-md hover:border-coral/50 shadow-card"
+                className="card-premium bg-white/[0.04] border border-white/10 rounded-[2.5rem] p-6 text-center flex flex-col items-center justify-between backdrop-blur-md hover:border-coral/50 shadow-card h-full"
               >
                 {/* Top tag */}
-                <span className="mono-label text-[10px] uppercase tracking-wider text-coral bg-coral/10 px-3 py-0.5 rounded-full mb-4">
+                <span className="mono-label text-[10px] uppercase tracking-wider text-coral bg-coral/10 px-3 py-0.5 rounded-full mb-3">
                   {item.tag}
                 </span>
 
                 {/* Animated SVG Ring */}
-                <div className="relative w-24 h-24 my-3 flex items-center justify-center">
+                <div className="relative w-24 h-24 my-2 flex items-center justify-center">
                   <svg className="w-full h-full -rotate-90 transform" viewBox="0 0 96 96">
                     {/* Background Track */}
                     <circle
@@ -89,9 +95,9 @@ export default function Skills({ track }) {
                   </div>
                 </div>
 
-                {/* Name & Summary (Simple and clean) */}
-                <div>
-                  <h3 className="font-sans font-bold text-lg text-snow mt-2 mb-1.5">
+                {/* Name & Summary */}
+                <div className="flex-1 flex flex-col justify-between mt-2">
+                  <h3 className="font-sans font-bold text-base text-snow mb-1.5 min-h-[2.5rem] flex items-center justify-center">
                     {item.name}
                   </h3>
                   <p className="text-xs text-snow/70 leading-relaxed font-normal">
@@ -103,32 +109,34 @@ export default function Skills({ track }) {
           })}
         </div>
 
-        {/* 2. Detailed Categories */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-white/10">
+        {/* 2. Detailed Categories (4 Columns on Same Line) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12 border-t border-white/10">
           {filteredCategories.map((cat, idx) => {
             const Icon = categoryIcons[idx] || Layers;
             return (
               <div
                 key={idx}
-                className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 hover:bg-white/[0.05] hover:border-coral/30 transition-all"
+                className="bg-white/[0.02] border border-white/5 rounded-3xl p-5 hover:bg-white/[0.05] hover:border-coral/30 transition-all flex flex-col justify-between h-full"
               >
-                <div className="flex items-center gap-3 border-b border-white/10 pb-3 mb-4">
-                  <div className="w-8 h-8 rounded-xl bg-white/[0.06] flex items-center justify-center text-coral">
-                    <Icon className="w-4 h-4" />
+                <div>
+                  <div className="flex items-center gap-2.5 border-b border-white/10 pb-3 mb-3">
+                    <div className="w-7 h-7 rounded-xl bg-white/[0.06] flex items-center justify-center text-coral shrink-0">
+                      <Icon className="w-3.5 h-3.5" />
+                    </div>
+                    <h4 className="font-sans font-bold text-xs sm:text-sm text-snow line-clamp-1">
+                      {cat.title}
+                    </h4>
                   </div>
-                  <h4 className="font-sans font-bold text-sm sm:text-base text-snow">
-                    {cat.title}
-                  </h4>
-                </div>
 
-                <ul className="space-y-3">
-                  {cat.skills.map((skill, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-xs text-snow/80 leading-relaxed">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-coral flex-shrink-0 mt-0.5" />
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="space-y-2.5">
+                    {cat.skills.map((skill, i) => (
+                      <li key={i} className="flex items-start gap-2 text-xs text-snow/80 leading-relaxed">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-coral flex-shrink-0 mt-0.5" />
+                        <span className="text-[11px] leading-snug">{skill}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             );
           })}

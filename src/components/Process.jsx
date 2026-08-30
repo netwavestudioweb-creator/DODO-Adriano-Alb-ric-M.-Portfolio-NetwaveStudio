@@ -7,66 +7,76 @@ const trackIcons = {
   telecom: [Activity, Radio, Network, ShieldCheck],
 };
 
-export default function Process() {
-  const [activeTrack, setActiveTrack] = useState('web_ia');
-  const currentData = processData[activeTrack];
-  const icons = trackIcons[activeTrack];
+export default function Process({ track }) {
+  const defaultTrack = track === 'network' ? 'telecom' : 'web_ia';
+  const [activeTrack, setActiveTrack] = useState(defaultTrack);
+  const effectiveTrack = track ? defaultTrack : activeTrack;
+  const currentData = processData[effectiveTrack];
+  const icons = trackIcons[effectiveTrack];
 
   return (
     <section id="process" className="py-24 md:py-32 bg-snow relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
-            <span className="w-2 h-2 rounded-full bg-coral inline-block" />
-            Méthodologie & Déploiement
+        {/* Section Header (Horizontal layout) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+          <div>
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+              <span className="w-2 h-2 rounded-full bg-coral inline-block" />
+              Méthodologie de Travail
+            </div>
+            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
+              Processus en 4 Étapes<span className="text-coral">.</span>
+            </h2>
           </div>
-          <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
-            Processus en 4 étapes<span className="text-coral">.</span>
-          </h2>
-          <p className="text-graphite-muted text-sm md:text-base mt-4 font-normal leading-relaxed">
-            Une approche méthodique adaptée aux spécificités du logiciel et de l'infrastructure physique.
+          <p className="text-graphite-muted max-w-md text-sm md:text-base font-normal leading-relaxed">
+            {track === 'dev'
+              ? "Une approche méthodique et itérative pour concevoir, développer et déployer des applications web et solutions IA performantes."
+              : track === 'network'
+              ? "Une approche méthodique et rigoureuse pour auditer, concevoir, déployer et sécuriser vos infrastructures réseaux."
+              : "Une approche méthodique adaptée aux spécificités du logiciel et de l'infrastructure physique."}
           </p>
         </div>
 
-        {/* Interactive Segmented Switch / Sliding Track Selector */}
-        <div className="flex justify-center mb-12">
-          <div className="relative inline-flex p-1.5 bg-snow-2 border border-ink/10 rounded-full shadow-inner max-w-md w-full">
-            <button
-              onClick={() => setActiveTrack('web_ia')}
-              className={`relative z-10 flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                activeTrack === 'web_ia'
-                  ? 'bg-coral text-white shadow-coral-glow'
-                  : 'text-graphite hover:text-ink'
-              }`}
-            >
-              <Code2 className="w-4 h-4" />
-              <span>Piste Web & IA</span>
-            </button>
+        {/* Interactive Segmented Switch (Uniquement affiché si aucun track spécifique n'est actif) */}
+        {!track && (
+          <div className="flex justify-center mb-12">
+            <div className="relative inline-flex p-1.5 bg-snow-2 border border-ink/10 rounded-full shadow-inner max-w-md w-full">
+              <button
+                onClick={() => setActiveTrack('web_ia')}
+                className={`relative z-10 flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                  activeTrack === 'web_ia'
+                    ? 'bg-coral text-white shadow-coral-glow'
+                    : 'text-graphite hover:text-ink'
+                }`}
+              >
+                <Code2 className="w-4 h-4" />
+                <span>Piste Web & IA</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTrack('telecom')}
-              className={`relative z-10 flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                activeTrack === 'telecom'
-                  ? 'bg-coral text-white shadow-coral-glow'
-                  : 'text-graphite hover:text-ink'
-              }`}
-            >
-              <Network className="w-4 h-4" />
-              <span>Réseaux & Télécoms</span>
-            </button>
+              <button
+                onClick={() => setActiveTrack('telecom')}
+                className={`relative z-10 flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                  activeTrack === 'telecom'
+                    ? 'bg-coral text-white shadow-coral-glow'
+                    : 'text-graphite hover:text-ink'
+                }`}
+              >
+                <Network className="w-4 h-4" />
+                <span>Réseaux & Télécoms</span>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Track Subtitle Info Bar */}
         <div className="text-center max-w-xl mx-auto mb-10 text-xs sm:text-sm mono-label text-graphite-muted bg-white/70 border border-ink/5 py-2.5 px-6 rounded-full shadow-sm">
           <span>{currentData.subtitle}</span>
         </div>
 
-        {/* 4 Steps Animated Grid with Sliding Feel */}
+        {/* 4 Steps Animated Grid */}
         <div
-          key={activeTrack}
+          key={effectiveTrack}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative animate-fadeIn"
         >
           {currentData.steps.map((item, idx) => {
@@ -108,7 +118,7 @@ export default function Process() {
                     Étape {idx + 1}/4
                   </span>
                   <span className="mono-label text-[10px] text-graphite-muted opacity-60">
-                    {activeTrack === 'web_ia' ? 'Code & IA' : 'Infra & Télécoms'}
+                    {effectiveTrack === 'web_ia' ? 'Code & IA' : 'Infra & Télécoms'}
                   </span>
                 </div>
               </div>

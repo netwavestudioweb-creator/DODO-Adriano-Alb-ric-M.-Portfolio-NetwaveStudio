@@ -1,73 +1,141 @@
 {
   "mastery": [
     {
-      "name": "Réseaux & Télécoms",
+      "name": "Développement Front-End & UI",
       "percentage": 95,
-      "summary": "Infrastructures d'entreprise, téléphonie VoIP, liaisons sécurisées et raccordement fibre.",
+      "summary": "Applications React 19 / TypeScript ultra-rapides, design systems Figma et optimisation Core Web Vitals.",
+      "tag": "Expertise Core",
+      "track": ["dev"]
+    },
+    {
+      "name": "Architecture Back-End & APIs",
+      "percentage": 90,
+      "summary": "APIs REST & WebSockets sous Node.js et Python, bases PostgreSQL et mise en cache Redis.",
+      "tag": "Robustesse",
+      "track": ["dev"]
+    },
+    {
+      "name": "IA Vocale & Systèmes LLM",
+      "percentage": 88,
+      "summary": "Pipelines temps réel Whisper ASR, LLaMA/Claude, ElevenLabs TTS et connecteurs Asterisk ARI.",
+      "tag": "Innovation",
+      "track": ["dev"]
+    },
+    {
+      "name": "Automatisation & DevOps / MLOps",
+      "percentage": 85,
+      "summary": "Workflows n8n événementiels, multi-agents autonomes, conteneurisation Docker et CI/CD.",
+      "tag": "Scalabilité",
+      "track": ["dev"]
+    },
+    {
+      "name": "Infrastructures Réseaux & Câblage",
+      "percentage": 95,
+      "summary": "Architecture LAN/WAN d'entreprise, routage OSPF/BGP, baies de brassage et raccordement fibre.",
       "tag": "Cœur de Métier",
       "track": ["network"]
     },
     {
-      "name": "Infrastructure & Systèmes",
-      "percentage": 80,
-      "summary": "Déploiement de serveurs, surveillance continue et haute disponibilité.",
-      "tag": "Fiabilité",
+      "name": "Téléphonie VoIP & Asterisk",
+      "percentage": 90,
+      "summary": "Serveurs IP-PBX Asterisk, protocoles SIP/PJSIP, SVI dynamiques et passerelles télécoms.",
+      "tag": "Télécoms",
       "track": ["network"]
     },
     {
-      "name": "Développement Web",
-      "percentage": 90,
-      "summary": "Sites vitrines, boutiques e-commerce rapides et applications sur-mesure.",
-      "tag": "Production",
-      "track": ["dev"]
+      "name": "Sécurité Périmétrique & VPN",
+      "percentage": 88,
+      "summary": "Tunnels chiffrés WireGuard/OpenVPN, pare-feu pfSense/iptables et durcissement des accès.",
+      "tag": "Sécurité",
+      "track": ["network"]
     },
     {
-      "name": "Automatisation & IA",
+      "name": "Systèmes Linux & Haute Disponibilité",
       "percentage": 85,
-      "summary": "Agents vocaux conversationnels, assistants WhatsApp et workflows sans friction.",
-      "tag": "Innovation",
-      "track": ["dev"]
+      "summary": "Serveurs Linux Debian, virtualisation Proxmox, monitoring Zabbix et tolérance aux pannes.",
+      "tag": "Fiabilité",
+      "track": ["network"]
     }
   ],
   "categories": [
     {
-      "title": "Réseaux & Télécoms",
-      "track": ["network"],
-      "skills": [
-        "Infrastructures réseau d'entreprise",
-        "Téléphonie VoIP professionnelle",
-        "Interconnexions sécurisées inter-sites",
-        "Raccordement et test fibre optique"
-      ]
-    },
-    {
-      "title": "Systèmes & Disponibilité",
-      "track": ["network"],
-      "skills": [
-        "Configuration et gestion de serveurs",
-        "Surveillance et diagnostic d'incidents",
-        "Sécurisation des accès et sauvegardes",
-        "Continuité d'activité sans coupure"
-      ]
-    },
-    {
-      "title": "Développement Web",
+      "title": "Front-End & Expérience Utilisateur",
       "track": ["dev"],
       "skills": [
-        "Sites vitrines et boutiques en ligne",
-        "Interfaces réactives optimisées 3G/4G",
-        "Passerelles de paiement Mobile Money",
-        "Panels d'administration sur-mesure"
+        "React 19 / Next.js / TypeScript",
+        "Tailwind CSS & Design Systems modulaires",
+        "Optimisation Core Web Vitals & TTFB sous contraintes 3G/4G",
+        "Composants UI accessibles et micro-interactions fluides"
       ]
     },
     {
-      "title": "Intelligence Artificielle",
+      "title": "Back-End & Architecture Données",
       "track": ["dev"],
       "skills": [
-        "Centres d'appels et agents vocaux 24/7",
-        "Automatisation de processus métier",
-        "Assistants conversationnels WhatsApp",
-        "Traitement et analyse de données"
+        "Node.js, Express & Python (FastAPI)",
+        "PostgreSQL, Prisma ORM & Modélisation relationnelle",
+        "Mise en cache Redis & Tunnels WebSockets temps réel",
+        "Architecture d'APIs RESTful sécurisées & Webhooks"
+      ]
+    },
+    {
+      "title": "Pipelines IA Vocale & Agents RAG",
+      "track": ["dev"],
+      "skills": [
+        "Transcription temps réel Groq Whisper (ASR)",
+        "Synthèse vocale ultra-réaliste ElevenLabs (TTS)",
+        "Interfaçage Asterisk ARI & Algorithmes de détection Barge-in",
+        "Orchestration LLM (LLaMA 3.3, Claude 3.5, OpenAI)"
+      ]
+    },
+    {
+      "title": "Automatisation, DevOps & Qualité",
+      "track": ["dev"],
+      "skills": [
+        "Orchestration de workflows n8n complexes",
+        "Conteneurisation Docker & Déploiement Edge / Cloud",
+        "Pipelines d'Intégration & Déploiement Continus (CI/CD)",
+        "GitFlow, Tests automatisés & Revue de code rigoureuse"
+      ]
+    },
+    {
+      "title": "Réseaux & Commutation d'Entreprise",
+      "track": ["network"],
+      "skills": [
+        "Architecture et déploiement LAN/WAN Cisco",
+        "Segmentation VLANs, Trunks & Spanning Tree",
+        "Routage dynamique OSPF, BGP & NAT",
+        "Câblage structuré cuivre & Raccordement fibre optique"
+      ]
+    },
+    {
+      "title": "Téléphonie VoIP & Protocoles SIP",
+      "track": ["network"],
+      "skills": [
+        "Installation et configuration IP-PBX Asterisk / FreePBX",
+        "Gestion des protocoles SIP, PJSIP, IAX2 & WebRTC",
+        "Mise en place de SVI interactifs & Files d'attente",
+        "Analyse de trafic vocal et diagnostic Wireshark"
+      ]
+    },
+    {
+      "title": "Sécurité Périmétrique & Accès Distants",
+      "track": ["network"],
+      "skills": [
+        "Tunnels VPN chiffrés WireGuard & OpenVPN",
+        "Filtrage pare-feu pfSense, iptables & Fail2Ban",
+        "Segmentation réseau étanche & DMZ",
+        "Sécurisation des flux et durcissement des accès SSH"
+      ]
+    },
+    {
+      "title": "Administration Systèmes & Monitoring",
+      "track": ["network"],
+      "skills": [
+        "Administration serveurs Linux (Debian / Ubuntu Server)",
+        "Virtualisation d'infrastructure sous Proxmox / KVM",
+        "Supervision et alerting temps réel Zabbix / Grafana",
+        "Scripts bash d'automatisation et de sauvegarde planifiée"
       ]
     }
   ]

@@ -1,14 +1,29 @@
 import React from 'react';
 import { ShieldCheck, Building2, Landmark, Hospital, Cpu } from 'lucide-react';
 
-export default function TrustBanner() {
-  const projects = [
+export default function TrustBanner({ track }) {
+  const allProjects = [
     { name: 'Alkareem Parfumerie', icon: Cpu, desc: 'Client E-Commerce' },
     { name: 'CHUC', icon: Hospital, desc: 'Hôpital Universitaire' },
     { name: 'Ministère de la Santé du Bénin', icon: Landmark, desc: 'Supervision Réseau' },
     { name: 'SOBAPS Bénin', icon: ShieldCheck, desc: 'Infrastructures & Sécurité' },
     { name: 'PH GROUP', icon: Building2, desc: 'Partenaire Corporate' },
   ];
+
+  const projects = track === 'dev'
+    ? [
+        { name: 'Alkareem Parfumerie', icon: Cpu, desc: 'Client E-Commerce' },
+        { name: 'CHUC', icon: Hospital, desc: 'Hôpital Universitaire' },
+        { name: 'PH GROUP', icon: Building2, desc: 'Partenaire Corporate' },
+      ]
+    : track === 'network'
+    ? [
+        { name: 'CHUC', icon: Hospital, desc: 'Hôpital Universitaire' },
+        { name: 'Ministère de la Santé du Bénin', icon: Landmark, desc: 'Supervision Réseau' },
+        { name: 'SOBAPS Bénin', icon: ShieldCheck, desc: 'Infrastructures & Sécurité' },
+        { name: 'PH GROUP', icon: Building2, desc: 'Partenaire Corporate' },
+      ]
+    : allProjects;
 
   return (
     <div className="bg-snow-2 border-y border-ink/5 py-8 overflow-hidden">
