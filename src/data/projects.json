@@ -12,21 +12,7 @@
     "stack": ["n8n", "Claude API", "Python", "WhatsApp Business API", "PostgreSQL", "Docker"],
     "image": "/ideas/d225bc8fc6bc15549ec3fd494c198531.webp",
     "metrics": "4 agents autonomes synchronisés"
-  },
-  {
-    "id": "adjoua-ia",
-    "track": ["dev"],
-    "name": "Adjoua — Assistant Vocal Médical IA",
-    "category": "IA Vocale Temps Réel & Asterisk",
-    "year": "2024",
-    "tagline": "Pipeline d'IA vocale bidirectionnel intégré à une ligne VoIP hospitalière (CHUC).",
-    "description": "Pipeline logiciel d'IA vocale s'interfaçant avec Asterisk via ARI. Intègre un STT rapide (Groq Whisper), traitement conversationnel par LLM et synthèse vocale TTS pour accueillir et orienter les patients 24h/24.",
-    "challenge": "Traiter les appels hospitaliers d'urgence avec une latence ultra-faible tout en absorbant les interruptions de parole des patients angoissés.",
-    "solution": "Interfaçage bidirectionnel Asterisk ARI avec pipeline Python asynchrone et détection de silence/barge-in sous 400ms.",
-    "hasAudioDemo": true,
-    "stack": ["Python", "Asterisk ARI", "Groq Whisper", "LLM", "ElevenLabs", "WebSockets"],
-    "image": "/ideas/9881a74dc6d139d97f01335ee37bad63.webp",
-    "metrics": "Génération & Latence < 700ms"
+
   },
   {
     "id": "sofia",
