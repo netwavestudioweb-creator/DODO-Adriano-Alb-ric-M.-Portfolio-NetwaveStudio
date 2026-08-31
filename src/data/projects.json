@@ -12,7 +12,29 @@
     "stack": ["n8n", "Claude API", "Python", "WhatsApp Business API", "PostgreSQL", "Docker"],
     "image": "/ideas/d225bc8fc6bc15549ec3fd494c198531.webp",
     "metrics": "4 agents autonomes synchronisés"
-
+  },
+  {
+    "id": "fleet-commander",
+    "track": ["dev"],
+    "name": "Fleet Commander (Manager Pro)",
+    "category": "SaaS & Gestion de Flotte",
+    "year": "2024",
+    "tagline": "Plateforme web de gestion complète et de suivi opérationnel de parc automobile.",
+    "description": "Application SaaS centralisant le pilotage des véhicules, conducteurs, réservations de missions, maintenance préventive/curative, suivi du carburant et alertes. Architecture découplée via le pattern Adapter, sécurité RLS et reporting automatisé.",
+    "challenge": "Garantir un découplage total de la logique métier vis-à-vis du backend tout en assurant un contrôle d'accès strict (RBAC/RLS) et des exports complexes côté client.",
+    "solution": "Conception d'une couche d'abstraction API (Adapter Pattern) avec TanStack React Query, sécurisation par Row Level Security sous PostgreSQL et génération de rapports PDF/Excel in-browser.",
+    "stack": ["React 18", "TypeScript", "Tailwind CSS", "Supabase (PostgreSQL)", "TanStack Query", "jsPDF", "XLSX"],
+    "image": "/ideas/fleet-1.png",
+    "images": [
+      "/ideas/fleet-1.png",
+      "/ideas/fleet-2.png",
+      "/ideas/fleet-3.png",
+      "/ideas/fleet-4.png"
+    ],
+    "metrics": "10 modules métier, Sécurité RBAC/RLS, Multi-devises",
+    "liveUrl": "https://manager-pro-weld.vercel.app/",
+    "githubUrl": "https://github.com/netwavestudioweb-creator/Manager_Pro",
+    "caseStudyUrl": "https://github.com/netwavestudioweb-creator/Manager_Pro/blob/main/RAPPORT_ETUDE_DE_CAS.md"
   },
   {
     "id": "sofia",
