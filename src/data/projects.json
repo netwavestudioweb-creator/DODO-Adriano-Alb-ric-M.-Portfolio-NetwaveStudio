@@ -1,19 +1,5 @@
 [
   {
-    "id": "multi-agents",
-    "track": ["dev"],
-    "name": "Architecture Multi-Agents Autonome",
-    "category": "Orchestration IA & Workflows",
-    "year": "2024",
-    "tagline": "Système d'orchestration créative multi-agents basé sur n8n, Claude API et WhatsApp Business.",
-    "description": "Infrastructure logicielle pilotant un réseau d'agents spécialisés (analyse sémantique, génération de contenu, veille technologique et design) orchestrés via un point d'entrée unique WhatsApp avec base d'état partagé.",
-    "challenge": "Orchestrer 4 agents IA aux rôles distincts sans dérive contextuelle ni conflits de prompts via un canal WhatsApp unique.",
-    "solution": "Moteur de routage sémantique sous n8n avec état persistant en base PostgreSQL et validation intermédiaire automatisée.",
-    "stack": ["n8n", "Claude API", "Python", "WhatsApp Business API", "PostgreSQL", "Docker"],
-    "image": "/ideas/d225bc8fc6bc15549ec3fd494c198531.webp",
-    "metrics": "4 agents autonomes synchronisés"
-  },
-  {
     "id": "fleet-commander",
     "track": ["dev"],
     "name": "Fleet Commander (Manager Pro)",
@@ -35,6 +21,20 @@
     "liveUrl": "https://manager-pro-weld.vercel.app/",
     "githubUrl": "https://github.com/netwavestudioweb-creator/Manager_Pro",
     "caseStudyUrl": "https://github.com/netwavestudioweb-creator/Manager_Pro/blob/main/RAPPORT_ETUDE_DE_CAS.md"
+  },
+  {
+    "id": "multi-agents",
+    "track": ["dev"],
+    "name": "Architecture Multi-Agents Autonome",
+    "category": "Orchestration IA & Workflows",
+    "year": "2024",
+    "tagline": "Système d'orchestration créative multi-agents basé sur n8n, Claude API et WhatsApp Business.",
+    "description": "Infrastructure logicielle pilotant un réseau d'agents spécialisés (analyse sémantique, génération de contenu, veille technologique et design) orchestrés via un point d'entrée unique WhatsApp avec base d'état partagé.",
+    "challenge": "Orchestrer 4 agents IA aux rôles distincts sans dérive contextuelle ni conflits de prompts via un canal WhatsApp unique.",
+    "solution": "Moteur de routage sémantique sous n8n avec état persistant en base PostgreSQL et validation intermédiaire automatisée.",
+    "stack": ["n8n", "Claude API", "Python", "WhatsApp Business API", "PostgreSQL", "Docker"],
+    "image": "/ideas/d225bc8fc6bc15549ec3fd494c198531.webp",
+    "metrics": "4 agents autonomes synchronisés"
   },
   {
     "id": "sofia",
