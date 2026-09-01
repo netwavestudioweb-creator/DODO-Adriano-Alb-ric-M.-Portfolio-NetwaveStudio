@@ -17,7 +17,7 @@ export default function TestimonialsFAQ({ track }) {
   };
 
   return (
-    <section id="faq" className="py-16 md:py-24 lg:py-28 bg-snow relative">
+    <section id="faq" className="py-16 md:py-24 lg:py-28 bg-snow-2 relative">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">

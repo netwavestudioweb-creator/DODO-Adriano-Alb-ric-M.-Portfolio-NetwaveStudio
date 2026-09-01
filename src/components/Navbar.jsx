@@ -47,16 +47,14 @@ export default function Navbar({ track }) {
 
   const networkNavLinks = [
     { label: 'À propos', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Processus', href: '#process' },
     { label: 'Projets', href: '#projects' },
+    { label: 'Processus', href: '#process' },
     { label: 'Compétences', href: '#skills' },
     { label: 'FAQ', href: '#faq' },
   ];
 
   const defaultNavLinks = [
     { label: 'À propos', href: '#about' },
-    { label: 'Services', href: '#services' },
     { label: 'Projets', href: '#projects' },
     { label: 'Processus', href: '#process' },
     { label: 'Compétences', href: '#skills' },

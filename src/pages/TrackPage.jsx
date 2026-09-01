@@ -6,7 +6,6 @@ import Reveal from '../components/Reveal';
 // Lazy loaded components
 const TrustBanner = lazy(() => import('../components/TrustBanner'));
 const About = lazy(() => import('../components/About'));
-const Services = lazy(() => import('../components/Services'));
 const Process = lazy(() => import('../components/Process'));
 const Projects = lazy(() => import('../components/Projects'));
 const Skills = lazy(() => import('../components/Skills'));
@@ -22,10 +21,8 @@ export default function TrackPage() {
       
       <Reveal><TrustBanner track={track} /></Reveal>
       <Reveal><About track={track} /></Reveal>
-      {track !== 'dev' && <Reveal><Services track={track} /></Reveal>}
-      {track !== 'dev' && <Reveal><Process track={track} /></Reveal>}
       <Reveal><Projects track={track} /></Reveal>
-      {track === 'dev' && <Reveal><Process track={track} /></Reveal>}
+      <Reveal><Process track={track} /></Reveal>
       <Reveal><Skills track={track} /></Reveal>
       <Reveal><TestimonialsFAQ track={track} /></Reveal>
       <Reveal><Contact track={track} /></Reveal>

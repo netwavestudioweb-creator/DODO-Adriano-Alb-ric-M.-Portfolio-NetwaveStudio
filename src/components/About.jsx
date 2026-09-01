@@ -54,9 +54,15 @@ export default function About({ track }) {
       badge: 'Diplômé',
     },
     {
-      degree: 'Cursus Réseaux & Fondations IP',
-      school: 'Cisco Networking Academy',
-      year: 'Formation NetAcad',
+      degree: 'Networking Basics',
+      school: 'Cisco Networking Academy (vérifiée Credly)',
+      year: 'Certification Cisco',
+      badge: 'Cisco NetAcad',
+    },
+    {
+      degree: 'Introduction to Cybersecurity',
+      school: 'Cisco Networking Academy (vérifiée Credly)',
+      year: 'Certification Cisco',
       badge: 'Cisco NetAcad',
     },
   ];
@@ -126,7 +132,7 @@ export default function About({ track }) {
               {track === 'network' ? (
                 <>
                   <p>
-                    Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et formé via Cisco Networking Academy, je suis spécialisé dans le déploiement d'architectures réseau, de systèmes VoIP et d'infrastructures d'entreprise sécurisées.
+                    Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et certifié Cisco Networking Academy (Networking Basics, Introduction to Cybersecurity), je suis spécialisé dans le déploiement d'architectures réseau, de systèmes VoIP et d'infrastructures d'entreprise sécurisées.
                   </p>
                   <p>
                     À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, j'accompagne entreprises et institutions dans l'audit, l'intégration de serveurs Asterisk, le routage inter-sites et le déploiement de liaisons résilientes.
@@ -220,7 +226,7 @@ export default function About({ track }) {
                 {track === 'dev' ? 'Formation & Certifications' : 'Formation & Diplômes'}
               </h4>
 
-              <div className={`grid grid-cols-1 ${education.length > 1 ? 'sm:grid-cols-2' : ''} gap-4`}>
+              <div className={`grid grid-cols-1 ${education.length > 1 ? (education.length >= 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2') : ''} gap-4`}>
                 {education.map((edu, idx) => (
                   <div
                     key={idx}
