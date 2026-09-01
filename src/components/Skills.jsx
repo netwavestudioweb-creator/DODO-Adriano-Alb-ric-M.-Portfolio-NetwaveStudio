@@ -15,27 +15,27 @@ export default function Skills({ track }) {
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <section id="skills" className="py-24 md:py-32 bg-ink text-snow relative overflow-hidden">
+    <section id="skills" className="py-16 md:py-24 lg:py-28 bg-ink text-snow relative overflow-hidden">
       {/* Ambient background glow & Neural Grid for Dev */}
       <div className="absolute top-1/3 -left-32 w-80 h-80 bg-coral/10 rounded-full blur-3xl pointer-events-none" />
       {track === 'dev' && (
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
       )}
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         {/* Section Header (Horizontal layout: Title left, Subtitle right on same line) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-2.5">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
               Piliers de Compétences
             </div>
-            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-snow tracking-tight">
+            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-snow tracking-tight whitespace-nowrap">
               Grille de Maîtrise<span className="text-coral">.</span>
             </h2>
           </div>
-          <p className="text-snow/70 max-w-md text-sm md:text-base font-normal leading-relaxed">
+          <p className="text-snow/70 max-w-md text-xs sm:text-sm md:text-base font-normal leading-relaxed">
             {track === 'dev'
               ? "Une expertise pointue en développement web moderne, architecture logicielle et intégration d'intelligence artificielle."
               : track === 'network'
@@ -44,8 +44,8 @@ export default function Skills({ track }) {
           </p>
         </div>
 
-        {/* 1. Mastery Cards (4 Cards Aligned Horizontally) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 1. Mastery Cards (4 Cards Aligned Horizontally on desktop, 2x2 on mobile/tablet) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 md:mb-16">
           {filteredMastery.map((item, idx) => {
             const strokeDashoffset = circumference - (item.percentage / 100) * circumference;
 

@@ -2,56 +2,56 @@
   "mastery": [
     {
       "name": "Développement Front-End & UI",
-      "percentage": 95,
+      "percentage": 88,
       "summary": "Applications React 19 / TypeScript ultra-rapides, design systems Figma et optimisation Core Web Vitals.",
       "tag": "Expertise Core",
       "track": ["dev"]
     },
     {
       "name": "Architecture Back-End & APIs",
-      "percentage": 90,
+      "percentage": 85,
       "summary": "APIs REST & WebSockets sous Node.js et Python, bases PostgreSQL et mise en cache Redis.",
       "tag": "Robustesse",
       "track": ["dev"]
     },
     {
       "name": "IA Vocale & Systèmes LLM",
-      "percentage": 88,
+      "percentage": 82,
       "summary": "Pipelines temps réel Whisper ASR, LLaMA/Claude, ElevenLabs TTS et connecteurs Asterisk ARI.",
       "tag": "Innovation",
       "track": ["dev"]
     },
     {
       "name": "Automatisation & DevOps / MLOps",
-      "percentage": 85,
+      "percentage": 78,
       "summary": "Workflows n8n événementiels, multi-agents autonomes, conteneurisation Docker et CI/CD.",
       "tag": "Scalabilité",
       "track": ["dev"]
     },
     {
       "name": "Infrastructures Réseaux & Câblage",
-      "percentage": 95,
+      "percentage": 88,
       "summary": "Architecture LAN/WAN d'entreprise, routage OSPF/BGP, baies de brassage et raccordement fibre.",
       "tag": "Cœur de Métier",
       "track": ["network"]
     },
     {
       "name": "Téléphonie VoIP & Asterisk",
-      "percentage": 90,
+      "percentage": 85,
       "summary": "Serveurs IP-PBX Asterisk, protocoles SIP/PJSIP, SVI dynamiques et passerelles télécoms.",
       "tag": "Télécoms",
       "track": ["network"]
     },
     {
       "name": "Sécurité Périmétrique & VPN",
-      "percentage": 88,
+      "percentage": 82,
       "summary": "Tunnels chiffrés WireGuard/OpenVPN, pare-feu pfSense/iptables et durcissement des accès.",
       "tag": "Sécurité",
       "track": ["network"]
     },
     {
       "name": "Systèmes Linux & Haute Disponibilité",
-      "percentage": 85,
+      "percentage": 78,
       "summary": "Serveurs Linux Debian, virtualisation Proxmox, monitoring Zabbix et tolérance aux pannes.",
       "tag": "Fiabilité",
       "track": ["network"]

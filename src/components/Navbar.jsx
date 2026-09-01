@@ -37,7 +37,24 @@ export default function Navbar({ track }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen]);
 
-  const navLinks = [
+  const devNavLinks = [
+    { label: 'À propos', href: '#about' },
+    { label: 'Projets', href: '#projects' },
+    { label: 'Processus', href: '#process' },
+    { label: 'Compétences', href: '#skills' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
+  const networkNavLinks = [
+    { label: 'À propos', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Processus', href: '#process' },
+    { label: 'Projets', href: '#projects' },
+    { label: 'Compétences', href: '#skills' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
+  const defaultNavLinks = [
     { label: 'À propos', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Projets', href: '#projects' },
@@ -45,6 +62,8 @@ export default function Navbar({ track }) {
     { label: 'Compétences', href: '#skills' },
     { label: 'FAQ', href: '#faq' },
   ];
+
+  const navLinks = track === 'dev' ? devNavLinks : track === 'network' ? networkNavLinks : defaultNavLinks;
 
   return (
     <header

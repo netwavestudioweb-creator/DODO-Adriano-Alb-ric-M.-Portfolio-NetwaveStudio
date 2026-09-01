@@ -15,17 +15,17 @@ export default function Process({ track }) {
   const icons = trackIcons[effectiveTrack];
 
   return (
-    <section id="process" className="py-24 md:py-32 bg-snow relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section id="process" className="py-16 md:py-24 lg:py-28 bg-snow relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         {/* Section Header (Horizontal layout) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-2.5">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
               Méthodologie de Travail
             </div>
-            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
+            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight whitespace-nowrap">
               Processus en 4 Étapes<span className="text-coral">.</span>
             </h2>
           </div>

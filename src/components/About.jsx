@@ -46,7 +46,7 @@ export default function About({ track }) {
 
   const experiences = track === 'dev' ? devExperiences : networkExperiences;
 
-  const education = [
+  const networkEducation = [
     {
       degree: 'Licence Pro Réseaux Informatiques & Télécoms',
       school: 'UATM GASA Formation, Cotonou',
@@ -61,6 +61,17 @@ export default function About({ track }) {
     },
   ];
 
+  const devEducation = [
+    {
+      degree: 'Responsive Web Design — Certification Développeur',
+      school: 'freeCodeCamp (~300h)',
+      year: 'Février 2025',
+      badge: 'freeCodeCamp',
+    },
+  ];
+
+  const education = track === 'dev' ? devEducation : networkEducation;
+
   const languages = [
     { name: 'Français', level: 'Courant / Professionnel', pct: '100%' },
     { name: 'Fon', level: 'Langue maternelle', pct: '100%' },
@@ -69,13 +80,13 @@ export default function About({ track }) {
   ];
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-snow relative">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section id="about" className="py-16 md:py-24 lg:py-28 bg-snow relative">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-2.5">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
               Profil & Trajectoire
             </div>
@@ -202,41 +213,39 @@ export default function About({ track }) {
               </div>
             </div>
 
-            {/* Education & Certifications (Affiché uniquement sur le profil Réseaux) */}
-            {track !== 'dev' && (
-              <div>
-                <h4 className="mono-label text-xs uppercase tracking-widest text-graphite-muted mb-6 flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-coral" />
-                  Formation & Diplômes
-                </h4>
+            {/* Education & Certifications */}
+            <div>
+              <h4 className="mono-label text-xs uppercase tracking-widest text-graphite-muted mb-6 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-coral" />
+                {track === 'dev' ? 'Formation & Certifications' : 'Formation & Diplômes'}
+              </h4>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {education.map((edu, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white border border-ink/10 rounded-2xl p-5 shadow-sm hover:border-coral/40 transition-all flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="mono-label text-[11px] text-coral font-medium">
-                            {edu.year}
-                          </span>
-                          <span className="mono-label text-[10px] uppercase tracking-wider bg-coral-soft/50 text-ink px-2 py-0.5 rounded-full">
-                            {edu.badge}
-                          </span>
-                        </div>
-                        <h6 className="font-sans font-bold text-sm text-ink leading-snug mb-1">
-                          {edu.degree}
-                        </h6>
+              <div className={`grid grid-cols-1 ${education.length > 1 ? 'sm:grid-cols-2' : ''} gap-4`}>
+                {education.map((edu, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white border border-ink/10 rounded-2xl p-5 shadow-sm hover:border-coral/40 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="mono-label text-[11px] text-coral font-medium">
+                          {edu.year}
+                        </span>
+                        <span className="mono-label text-[10px] uppercase tracking-wider bg-coral-soft/50 text-ink px-2 py-0.5 rounded-full">
+                          {edu.badge}
+                        </span>
                       </div>
-                      <p className="text-xs text-graphite-muted mt-2">
-                        {edu.school}
-                      </p>
+                      <h6 className="font-sans font-bold text-sm text-ink leading-snug mb-1">
+                        {edu.degree}
+                      </h6>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-xs text-graphite-muted mt-2">
+                      {edu.school}
+                    </p>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
 
           </div>
         </div>

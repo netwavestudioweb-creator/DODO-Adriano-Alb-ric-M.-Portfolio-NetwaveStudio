@@ -219,10 +219,10 @@ function ProjectCard({ proj, isBentoHero }) {
               </a>
             )}
 
-            {!proj.githubUrl && !proj.liveUrl && (
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-graphite-muted/70 bg-snow-2/60 px-2.5 py-1 rounded-md border border-ink/5 select-none">
+            {!proj.githubUrl && (
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-graphite-muted/70 bg-snow-2/60 px-2.5 py-1 rounded-md border border-ink/10 select-none">
                 <span className="w-1.5 h-1.5 rounded-full bg-graphite-muted/40" />
-                Code source à venir
+                Code source — Bientôt disponible
               </span>
             )}
           </div>
@@ -237,21 +237,21 @@ export default function Projects({ track }) {
   const filteredProjects = track ? projectsData.filter(p => p.track.includes(track)) : projectsData;
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-snow-2 relative">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section id="projects" className="py-16 md:py-24 lg:py-28 bg-snow-2 relative">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-2.5">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
               Réalisations Marquantes
             </div>
-            <h2 className="font-sans font-extrabold text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight">
+            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink tracking-tight whitespace-nowrap">
               Projets Sélectionnés<span className="text-coral">.</span>
             </h2>
           </div>
-          <p className="text-graphite-muted max-w-md text-sm md:text-base font-normal leading-relaxed">
+          <p className="text-graphite-muted max-w-md text-xs sm:text-sm md:text-base font-normal leading-relaxed">
             {track === 'dev'
               ? "Cas d'usage réels combinant architectures logicielles scalables, agents vocaux IA et interfaces web réactives."
               : track === 'network'
@@ -261,7 +261,7 @@ export default function Projects({ track }) {
         </div>
 
         {/* Projects Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${track === 'dev' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 ${track === 'dev' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
           {filteredProjects.map((proj, idx) => {
             const isBentoHero = track === 'dev' && idx === 0;
             return <ProjectCard key={proj.id} proj={proj} isBentoHero={isBentoHero} />;

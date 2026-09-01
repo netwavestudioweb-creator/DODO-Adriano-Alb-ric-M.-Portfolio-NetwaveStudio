@@ -22,7 +22,7 @@ export default function TrackPage() {
       
       <Reveal><TrustBanner track={track} /></Reveal>
       <Reveal><About track={track} /></Reveal>
-      <Reveal><Services track={track} /></Reveal>
+      {track !== 'dev' && <Reveal><Services track={track} /></Reveal>}
       {track !== 'dev' && <Reveal><Process track={track} /></Reveal>}
       <Reveal><Projects track={track} /></Reveal>
       {track === 'dev' && <Reveal><Process track={track} /></Reveal>}

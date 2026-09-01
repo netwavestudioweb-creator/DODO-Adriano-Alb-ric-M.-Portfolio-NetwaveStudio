@@ -79,7 +79,7 @@ export default function Hero({ track }) {
             <span className="block text-xl sm:text-2xl md:text-3xl font-medium tracking-normal text-snow/90 mt-2">
               {track === 'network' 
                 ? <><span className="text-coral">Technicien Réseaux & Télécoms</span> | Infrastructure & VoIP</>
-                : <><span className="text-coral">Développeur Full-Stack IA</span> | Architecte Logiciel & Automatisation<span className="inline-block w-[0.4em] h-[1em] ml-1.5 bg-coral animate-pulse align-text-bottom"></span></>
+                : <><span className="text-coral">Technicien Réseaux & Télécoms</span> | Développeur Full-Stack IA<span className="inline-block w-[0.4em] h-[1em] ml-1.5 bg-coral animate-pulse align-text-bottom"></span></>
               }
             </span>
           </h1>
@@ -100,7 +100,7 @@ export default function Hero({ track }) {
               </>
             ) : (
               <>
-                <strong className="text-snow font-semibold">DODO Albéric Mantey Adriano</strong> — Développeur Full-Stack & Concepteur de solutions IA. Je bâtis des applications web modernes, des pipelines de données et des automatisations intelligentes orientées résultats.
+                <strong className="text-snow font-semibold">DODO Albéric Mantey Adriano</strong> — Technicien Réseaux & Télécoms, Développeur Full-Stack & Concepteur de solutions IA. Je bâtis des applications web modernes, des pipelines de données et des automatisations intelligentes orientées résultats.
               </>
             )}
           </p>
@@ -140,7 +140,7 @@ export default function Hero({ track }) {
 
             {/* Secondary Action (GitHub for Dev & Network) */}
             <a
-              href="https://github.com/dodi-ad"
+              href="https://github.com/netwavestudioweb-creator"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-snow font-bold text-sm tracking-wide bg-white/5 hover:bg-white/10 border border-white/10 transition-all"

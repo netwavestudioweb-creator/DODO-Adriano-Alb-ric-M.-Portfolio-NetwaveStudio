@@ -54,16 +54,16 @@ export default function Contact({ track }) {
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-ink text-snow relative overflow-hidden">
+    <section id="contact" className="py-16 md:py-24 lg:py-28 bg-ink text-snow relative overflow-hidden">
       {/* Glow highlight */}
       <div className="absolute top-1/2 -right-48 w-96 h-96 bg-coral/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
         
         {/* Main Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-3">
+            <div className="inline-flex items-center gap-2 mono-label text-xs uppercase tracking-widest text-coral font-medium mb-2.5">
               <span className="w-2 h-2 rounded-full bg-coral inline-block" />
               Contact & Opportunités
             </div>
