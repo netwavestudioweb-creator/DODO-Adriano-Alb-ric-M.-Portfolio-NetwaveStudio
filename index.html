@@ -5,24 +5,29 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DODI — Technicien Réseaux & Télécoms · Fondateur NetWave Studio</title>
-    <meta name="description" content="Portfolio de DODI (Dodo Albéric Mantey Adriano) — Technicien Réseaux & Télécoms, Architecte de centres d'appels IA et Fondateur de NetWave Studio à Cotonou, Bénin." />
+    <title>DODI — Technicien Réseaux & Télécoms · Développeur Web & IA</title>
+    <meta name="description" content="Portfolio de DODI (Dodo Albéric Mantey Adriano) — Technicien Réseaux & Télécoms, Développeur Web & Architecte IA, Fondateur de NetWave Studio à Cotonou, Bénin." />
+    <meta name="theme-color" content="#131315" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DODI — Technicien Réseaux, Télécoms & Développeur Web / IA" />
+    <meta property="og:description" content="Découvrez le portfolio professionnel de Dodo Albéric Mantey Adriano (DODI). Architectures Réseaux, VoIP Asterisk, Solutions IA & Développement Web." />
+    <meta property="og:image" content="/photos/dodi_portrait_clean.webp" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DODI — Technicien Réseaux, Télécoms & Développeur Web / IA" />
+    <meta name="twitter:description" content="Infrastructures Réseaux d'entreprise, Téléphonie VoIP, Développeur Web & Architectures IA." />
+    <meta name="twitter:image" content="/photos/dodi_portrait_clean.webp" />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts Optimized -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body class="bg-snow text-graphite font-sans antialiased selection:bg-coral selection:text-snow overflow-x-hidden">
-    <!-- SVG Global Noise Texture (0.045 opacity) -->
-    <svg id="noise-overlay" class="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-[0.045] mix-blend-multiply" xmlns="http://www.w3.org/2000/svg">
-      <filter id="noiseFilter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
-        <feColorMatrix type="saturate" values="0"/>
-      </filter>
-      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
-    </svg>
-
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

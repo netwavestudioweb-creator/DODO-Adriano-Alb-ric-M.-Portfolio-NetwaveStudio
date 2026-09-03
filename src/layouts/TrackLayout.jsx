@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import Navbar from '../components/Navbar';
-import Loader from '../components/Loader';
 import SmoothScroll from '../components/SmoothScroll';
 
 // Lazy load footer to optimize initial render
@@ -14,7 +13,6 @@ export default function TrackLayout({ track, title, description }) {
 
   return (
     <SmoothScroll>
-      <Loader />
       {/* 
         The themeClass applies the CSS variables for --color-accent 
         which will change the color of all accent elements (text-coral, bg-coral, etc. which are now mapped to --color-accent)

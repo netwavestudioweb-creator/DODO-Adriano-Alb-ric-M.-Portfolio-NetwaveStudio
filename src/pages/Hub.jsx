@@ -36,7 +36,7 @@ export default function Hub() {
     setSliderPosition(track === 'network' ? 100 : 0);
     setTimeout(() => {
       navigate(path);
-    }, 800);
+    }, 350);
   };
 
   const handlePointerDown = () => setIsDragging(true);

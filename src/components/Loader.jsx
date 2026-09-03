@@ -4,21 +4,34 @@ export default function Loader({ onComplete }) {
   const [stage, setStage] = useState('entering');
 
   useEffect(() => {
-    // Hold the loading screen for a bit
+    // If the visitor has already seen the intro this session, dismiss immediately
+    if (typeof window !== 'undefined' && sessionStorage.getItem('portfolio_intro_seen')) {
+      if (onComplete) onComplete();
+      return;
+    }
+
+    // Snappy, modern intro duration (400ms progress + 300ms exit fade)
     const t1 = setTimeout(() => {
       setStage('exiting');
-    }, 2000);
+    }, 450);
 
-    // Call onComplete after exit animation finishes
     const t2 = setTimeout(() => {
+      try {
+        sessionStorage.setItem('portfolio_intro_seen', 'true');
+      } catch (_) {}
       if (onComplete) onComplete();
-    }, 2800);
+    }, 750);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
   }, [onComplete]);
+
+  // If already seen, render nothing
+  if (typeof window !== 'undefined' && sessionStorage.getItem('portfolio_intro_seen')) {
+    return null;
+  }
 
   return (
     <div 
@@ -43,7 +56,7 @@ export default function Loader({ onComplete }) {
         <div 
           className="h-full bg-coral origin-left rounded-full" 
           style={{ 
-            animation: 'loader-progress 2s cubic-bezier(0.76,0,0.24,1) forwards' 
+            animation: 'loader-progress 0.45s cubic-bezier(0.76,0,0.24,1) forwards' 
           }} 
         />
       </div>

@@ -194,11 +194,19 @@ export default function Hero({ track }) {
         <div className="hero-photo relative flex-shrink-0 w-72 sm:w-80 lg:w-96">
           <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/15 bg-white/[0.04] p-3 shadow-2xl backdrop-blur-xl">
             <div className="relative rounded-[2rem] overflow-hidden aspect-[3/4] w-full">
-              <img
-                src="/photos/dodi_portrait_clean.jpg"
-                alt="Portrait de DODI - Dodo Albéric Mantey Adriano"
-                className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-700"
-              />
+              <picture>
+                <source srcSet="/photos/dodi_portrait_clean.webp" type="image/webp" />
+                <img
+                  src="/photos/dodi_portrait_clean.jpg"
+                  alt="Portrait de DODI - Dodo Albéric Mantey Adriano"
+                  width="384"
+                  height="512"
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-700"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent pointer-events-none" />
               
               <div className="absolute bottom-4 left-4 right-4 text-left">

@@ -11,10 +11,17 @@ const LinkedInIcon = ({ className }) => (
 
 export default function Contact({ track }) {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (honeypot) return; // Silent discard if bot filled hidden field
+
+    const subjectText = formData.subject.trim() || 'Prise de contact via Portfolio';
+    const bodyText = `Bonjour Adriano,\n\nNom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    const mailtoUrl = `mailto:adrrianododo@gmail.com?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
+    
+    window.location.href = mailtoUrl;
     setSubmitted(true);
   };
 
@@ -158,6 +165,16 @@ export default function Contact({ track }) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field for spam prevention */}
+                <input
+                  type="text"
+                  name="_honey"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: 'none' }}
+                  tabIndex="-1"
+                  autoComplete="off"
+                />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block mono-label text-xs uppercase tracking-wider text-snow/70 mb-2">
