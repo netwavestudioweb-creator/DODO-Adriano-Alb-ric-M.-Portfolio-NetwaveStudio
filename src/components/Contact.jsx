@@ -12,6 +12,7 @@ const LinkedInIcon = ({ className }) => (
 export default function Contact({ track }) {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [honeypot, setHoneypot] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

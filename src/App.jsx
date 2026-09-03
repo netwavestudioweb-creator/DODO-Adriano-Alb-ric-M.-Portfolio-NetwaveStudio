@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import Hub from './pages/Hub';
 import Loader from './components/Loader';
+import ErrorPage from './pages/ErrorPage';
 
 const TrackLayout = lazy(() => import('./layouts/TrackLayout'));
 const TrackPage = lazy(() => import('./pages/TrackPage'));
@@ -11,7 +12,8 @@ const TrackPage = lazy(() => import('./pages/TrackPage'));
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Hub />
+    element: <Hub />,
+    errorElement: <ErrorPage />
   },
   {
     path: '/reseaux-telecoms',
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
         <TrackLayout track="network" title="DODI | Technicien Réseaux, Télécoms & Infrastructure" description="Portfolio de DODO Albéric Mantey Adriano (DODI) — Technicien Réseaux & Télécoms (Infrastructures LAN/WAN, Téléphonie VoIP Asterisk, Tunnels WireGuard, Linux, Sécurité)." />
       </Suspense>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -38,6 +41,7 @@ const router = createBrowserRouter([
         <TrackLayout track="dev" title="DODI | Développeur Full-Stack Web & IA" description="Portfolio de DODO Albéric Mantey Adriano (DODI) — Développeur Full-Stack Web & Architecte de solutions IA (React, Python, n8n, Groq Whisper, LLaMA, Asterisk ARI)." />
       </Suspense>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
