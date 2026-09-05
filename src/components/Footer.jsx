@@ -21,7 +21,9 @@ export default function Footer() {
           </p>
           <span className="hidden md:inline-block text-white/20">|</span>
           <a
-            href="mailto:netwave.studio.web@gmail.com"
+            href="https://netwave-studio-zeov.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mono-label text-xs text-snow/40 hover:text-coral transition-colors"
           >
             Fondateur de NetWave Studio →

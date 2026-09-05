@@ -135,7 +135,16 @@ export default function About({ track }) {
                     Diplômé d'une Licence Professionnelle Réseaux Informatiques et Télécommunications (UATM GASA Formation) et certifié Cisco Networking Academy (Networking Basics, Introduction to Cybersecurity), je suis spécialisé dans le déploiement d'architectures réseau, de systèmes VoIP et d'infrastructures d'entreprise sécurisées.
                   </p>
                   <p>
-                    À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, j'accompagne entreprises et institutions dans l'audit, l'intégration de serveurs Asterisk, le routage inter-sites et le déploiement de liaisons résilientes.
+                    À travers{' '}
+                    <a
+                      href="https://netwave-studio-zeov.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral font-semibold hover:underline"
+                    >
+                      NetWave Studio
+                    </a>
+                    , j'accompagne entreprises et institutions dans l'audit, l'intégration de serveurs Asterisk, le routage inter-sites et le déploiement de liaisons résilientes.
                   </p>
                 </>
               ) : (
@@ -144,7 +153,16 @@ export default function About({ track }) {
                     Développeur full-stack et concepteur de solutions logicielles & IA, je conçois des applications web modernes, hautement performantes et des agents conversationnels intelligents.
                   </p>
                   <p>
-                    À travers <strong className="text-coral font-semibold">NetWave Studio</strong>, mon studio freelance, j'accompagne entreprises et startups dans la digitalisation de leurs processus métier et le déploiement d'architectures sur-mesure.
+                    À travers{' '}
+                    <a
+                      href="https://netwave-studio-zeov.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral font-semibold hover:underline"
+                    >
+                      NetWave Studio
+                    </a>
+                    , mon studio freelance, j'accompagne entreprises et startups dans la digitalisation de leurs processus métier et le déploiement d'architectures sur-mesure.
                   </p>
                 </>
               )}
