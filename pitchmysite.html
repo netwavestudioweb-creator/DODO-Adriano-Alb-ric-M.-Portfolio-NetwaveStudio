@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PitchMySite · Étude de cas · Adriano DODO</title>
+<meta name="description" content="Étude de cas PitchMySite : un SaaS qui transforme le lien d'un site en visuels de présentation. Next.js, Supabase, Mobile Money (SasPay).">
+<meta name="theme-color" content="#f4f6f9">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=8">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+
+</head>
+<body>
+<div class="pt" aria-hidden="true"></div>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<div class="wrap nav">
+  <header class="nav-in">
+    <a class="brand" href="index.html"><span class="logo" aria-hidden="true">AD</span>Adriano DODO</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="projets.html">Projets</a>
+      <a href="pitchmysite.html" aria-current="page">Étude de cas</a>
+      <a href="assets/CV_Adriano_Dodo.pdf">CV</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="btn btn-p btn-contact" href="contact.html">ME CONTACTER</a>
+      <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 9h16M4 15h16"/></svg></button>
+    </div>
+  </header>
+</div>
+
+<main id="contenu">
+  <section class="page-hero" style="text-align:center">
+    <span class="glow-bg" aria-hidden="true" style="display:none"></span>
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:26px">
+      <nav aria-label="Fil d'Ariane" class="mono" style="font-size:13px;color:var(--muted);display:flex;gap:10px"><a href="projets.html" style="color:var(--muted)">Projets</a><span aria-hidden="true">/</span><span style="color:var(--fg)">PitchMySite</span></nav>
+      <h1>Pitch<span class="serif">My</span>Site</h1>
+      <p class="lead" style="max-width:48ch;text-align:center">Collez le lien de votre site. Recevez des visuels qui donnent envie de signer. Un SaaS complet, de la capture au paiement Mobile Money.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+        <a class="btn btn-p" href="https://pitchmysite.com">OUVRIR LE SITE ↗</a>
+        <a class="btn btn-g" href="https://github.com/netwavestudioweb-creator/OmniMockup">LIRE LE CODE ↗</a>
+      </div>
+    </div>
+    <div class="wrap" style="padding-top:64px">
+      <img src="assets/img/studio-ensemble.jpg" alt="Le studio PitchMySite : un site présenté sur ordinateur et iPhone, avec le panneau de réglages" width="1600" height="1000" style="border-radius:28px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(13,19,32,0.16);width:100%;height:auto">
+    </div>
+  </section>
+
+  <div class="wrap">
+    <dl class="facts">
+      <div><dt>Rôle</dt><dd>Produit, design, développement</dd></div>
+      <div><dt>Type</dt><dd>SaaS · projet personnel</dd></div>
+      <div><dt>Année</dt><dd>2026</dd></div>
+      <div><dt>Stack</dt><dd>Next.js · TypeScript · Supabase</dd></div>
+      <div><dt>Domaine</dt><dd>pitchmysite.com</dd></div>
+      <div><dt>Paiement</dt><dd>Mobile Money (SasPay) · carte bientôt</dd></div>
+    </dl>
+  </div>
+
+  <section class="sec">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:96px">
+      <article class="prose">
+        <span class="chap" style="">Le problème</span>
+        <h2 class="h2" style="font-size:clamp(40px,5vw,64px)">Deux heures par client, <span class="serif">pour une capture plate.</span></h2>
+        <p>Une agence ou un freelance qui présente un site à un client passe du temps entre captures d'écran et logiciel de design. Le résultat est souvent une image plate qui ne vend rien, à refaire dès que le site change.</p>
+        <p>PitchMySite fait ce travail à partir d'un simple lien : il capture le site, le place dans des appareils et des scènes réalistes, puis exporte des visuels prêts pour LinkedIn, Instagram, un statut WhatsApp ou une proposition commerciale.</p>
+      </article>
+
+      <article style="display:flex;flex-direction:column;gap:28px">
+        <span class="chap">Ce que j'ai construit</span>
+        <h2 class="h2" style="font-size:clamp(40px,5vw,64px)">De l'URL <span class="serif">au visuel exporté.</span></h2>
+        <div class="feat-grid">
+          <div><span class="mono">CAPTURE</span><b>Page entière en 2 à 12 s</b><span>Deux moteurs qui se relaient, vraie version mobile, bannières cookies masquées, jusqu'à 5 pages d'un site.</span></div>
+          <div><span class="mono">STUDIO</span><b>Appareils et dispositions</b><span>MacBook, iMac, iPad, iPhone, Android, montre. Dispositions Solo, Duo, Trio et Avant/Après.</span></div>
+          <div><span class="mono">MODÈLES</span><b>13 modèles, 8 scènes photo</b><span>Classés par usage : LinkedIn, Instagram, statut WhatsApp, proposition, portfolio.</span></div>
+          <div><span class="mono">RÉGLAGES</span><b>Angle 3D, fonds, effets</b><span>Ombres, lumière, flou portrait, grain, couleurs tirées du site, annotations.</span></div>
+          <div><span class="mono">PAIEMENT</span><b>Mobile Money par SasPay</b><span>Paiement en FCFA pour l'Afrique de l'Ouest. Le paiement par carte est prêt et sera activé ensuite.</span></div>
+          <div><span class="mono">ADMINISTRATION</span><b>Ventes, utilisateurs, alertes</b><span>Tableau de bord, suivi du parcours d'achat, alertes de paiement, cadeaux.</span></div>
+        </div>
+      </article>
+
+      <figure style="margin:0;display:flex;flex-direction:column;gap:14px">
+        <img src="assets/img/studio-modeles.jpg" alt="La bibliothèque de modèles prêts à publier dans PitchMySite" loading="lazy" width="1600" height="1000" style="width:100%;height:auto;border-radius:24px;border:1px solid var(--line)">
+        <figcaption class="mono" style="font-size:12px;color:var(--muted)">La bibliothèque de modèles, classés par usage.</figcaption>
+      </figure>
+
+      <article style="display:flex;flex-direction:column;gap:28px">
+        <span class="chap">Qualité mesurée</span>
+        <h2 class="h2" style="font-size:clamp(40px,5vw,64px)">Des chiffres <span class="serif">qu'on peut vérifier.</span></h2>
+        <div class="stats" style="margin-top:0">
+          <div><b>100</b><span>accessibilité Lighthouse sur 4 pages clés</span></div>
+          <div><b>57 → 71</b><span>score de vitesse de l'accueil, mesure locale sur mobile simulé</span></div>
+          <div><b>27</b><span>combinaisons testées sans défilement horizontal (9 pages × 3 largeurs)</span></div>
+          <div><b>15</b><span>migrations de base de données, sécurité comprise</span></div>
+        </div>
+        
+      </article>
+
+      <article class="prose">
+        <span class="chap">Ce que j'en retiens</span>
+        <h2 class="h2" style="font-size:clamp(40px,5vw,64px)">Une difficulté, <span class="serif">et ma solution.</span></h2>
+        <p>Le point fragile, c'était la capture. Certains sites chargent lentement, d'autres bloquent les robots, et une capture ratée bloque tout le reste du parcours.</p>
+        <p>J'ai fait travailler deux moteurs en relais : un service de capture externe, et un navigateur que je pilote moi-même quand le premier échoue. Une capture réussie est gardée 15 minutes, pour rouvrir instantanément un lien déjà analysé. Résultat : 2 à 12 secondes par site, avec un message clair quand un site ne répond pas.</p>
+      </article>
+    </div>
+  </section>
+
+  <section style="padding-bottom:56px">
+    <div class="wrap">
+      <a href="projets.html" class="card dark" style="flex-direction:row;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:clamp(32px,5vw,64px);color:var(--fg);background:linear-gradient(135deg,#1c1030,#3f1f63);border-color:rgba(190,140,255,0.2)">
+        <div style="display:flex;flex-direction:column;gap:12px"><span class="eyebrow" style="color:#b9a9d4">Projet suivant</span><span style="font-family:var(--disp);font-weight:700;letter-spacing:-.04em;font-size:clamp(36px,5vw,64px);line-height:.95">Al Kareem <span class="serif">Parfumerie</span></span></div>
+        <span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#f4f6fb;color:#07090d;display:flex;align-items:center;justify-content:center;font-size:28px">→</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Adriano DODO · Conçu et codé à Cotonou</span>
+    <nav aria-label="Réseaux"><a href="https://github.com/netwavestudioweb-creator">GitHub ↗</a><a href="https://wa.me/2290150884670">WhatsApp ↗</a></nav>
+  </div>
+</footer>
+<script src="assets/js/main.js?v=7" defer></script>
+</body>
+</html>
