@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+
+Sitemap: https://dodo-adriano-alb-ric-m-portfolio-ne.vercel.app/sitemap.xml

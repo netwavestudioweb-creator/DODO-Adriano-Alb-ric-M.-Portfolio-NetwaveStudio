@@ -387,3 +387,59 @@ textarea.inp{min-height:96px}
 .logo::after{content:'';position:absolute;left:7px;right:7px;bottom:6px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue) 0 33%,var(--orange) 33% 66%,var(--green) 66% 100%)}
 .brand:hover .logo::after{animation:signal 1s ease}
 @keyframes signal{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0 0 0)}}
+
+/* ---------- Page À propos ---------- */
+.about-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,0.9fr);gap:clamp(32px,6vw,96px);align-items:end}
+.about-text{display:flex;flex-direction:column;gap:28px}
+.about-text h1{font-size:clamp(48px,6.6vw,104px)}
+.about-text .prose a{color:var(--blue-t);text-decoration:underline;text-underline-offset:3px}
+.about-photo{margin:0;display:flex;flex-direction:column;gap:12px}
+.about-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:28px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(13,19,32,0.14)}
+.about-photo figcaption{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.path{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.path li{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:28px 0;border-bottom:1px solid var(--line);position:relative}
+.path li::before{content:'';position:absolute;left:0;top:-1px;width:64px;height:2px;background:var(--c,var(--blue))}
+.path .when{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:6px}
+.path h3{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);letter-spacing:-0.03em;margin:0 0 10px}
+.path p{color:var(--text);line-height:1.65;margin:0 0 14px;max-width:62ch}
+.ai-box{background:var(--green-s);border:1px solid rgba(31,164,99,0.22);border-radius:32px;padding:clamp(24px,4vw,48px)}
+.steps4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;counter-reset:s}
+.steps4 li{border-top:2px solid var(--fg);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+.steps4 b{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.steps4 h3{font-family:var(--disp);font-size:24px;letter-spacing:-0.03em;margin:0}
+.steps4 p{color:var(--text);line-height:1.6;margin:0}
+.about-last{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px)}
+.langs{margin:18px 0 0;border-top:1px solid var(--line)}
+.langs div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.langs dt{font-family:var(--disp);font-weight:700;font-size:20px}
+.langs dd{margin:0;color:var(--muted)}
+.faq{display:flex;flex-direction:column}
+.faq .eyebrow{margin-bottom:18px}
+.faq details{border-top:1px solid var(--line);padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-0.02em;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-family:var(--mono);color:var(--muted);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--text);line-height:1.65;margin:12px 0 0;max-width:60ch}
+.faq a{color:var(--blue-t);text-decoration:underline;text-underline-offset:3px}
+.cta-card{flex-direction:row;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:clamp(32px,5vw,64px)}
+.cta-card > div{display:flex;flex-direction:column;gap:12px}
+.cta-title{font-family:var(--disp);font-weight:700;letter-spacing:-.04em;font-size:clamp(36px,5vw,64px);line-height:.95}
+.cta-arrow{width:72px;height:72px;border-radius:50%;background:var(--fg);color:var(--on-fg);display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.cta-card:hover .cta-arrow{transform:translateX(8px)}
+
+/* ---------- Étude de cas : barres à l'échelle ---------- */
+.bars{display:flex;flex-direction:column;gap:18px;max-width:760px}
+.pbar{display:grid;grid-template-columns:120px minmax(0,1fr) 56px;gap:16px;align-items:center}
+.pbar span{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.pbar i{display:block;height:14px;border-radius:999px;background:var(--card2);overflow:hidden;position:relative}
+.pbar i::after{content:'';position:absolute;inset:0;width:var(--w);border-radius:inherit;background:var(--c,var(--blue))}
+.pbar b{font-family:var(--disp);font-size:22px;text-align:right}
+
+@media (max-width:860px){
+  .about-hero,.about-last{grid-template-columns:1fr}
+  .about-photo{max-width:420px}
+  .path li{grid-template-columns:1fr;gap:6px}
+  .pbar{grid-template-columns:90px minmax(0,1fr) 44px;gap:10px}
+}
