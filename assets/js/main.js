@@ -345,6 +345,19 @@
     });
   }
 
+  /* ---------- Statistiques : clics qui mènent à un contact (Vercel Analytics) ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || typeof window.va !== 'function') return;
+    var h = a.getAttribute('href'), name = null;
+    if (/\.pdf$/i.test(h)) name = 'cv';
+    else if (/wa\.me/.test(h)) name = 'whatsapp';
+    else if (/linkedin\.com/.test(h)) name = 'linkedin';
+    else if (/contact(\.html)?$/.test(h)) name = 'contact';
+    else if (/^mailto:/.test(h)) name = 'email';
+    if (name) window.va('event', { name: 'clic_' + name, data: { page: location.pathname } });
+  }, true);
+
   /* ---------- Transitions entre les pages ---------- */
   requestAnimationFrame(function () { document.body.classList.add('ready'); });
   window.addEventListener('pageshow', function () { document.body.classList.remove('leaving'); document.body.classList.add('ready'); });
