@@ -1,6 +1,6 @@
 // Chef d'orchestre du voyage : niveau d'affichage, porte d'entrée, défilement → caméra,
 // titres (GSAP SplitText), tableau de bord, son, curseur, surveillance de la fluidité.
-import { createAudio } from './audio.js';
+import { createAudio } from './audio.js?v=1';
 
 const root = document.documentElement;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -98,7 +98,7 @@ async function start() {
   if (document.fonts && document.fonts.ready) await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]);
   setPct(25);
   let assets = 0, ready = false;
-  const { createWorld } = await import('./world.js?v=8');
+  const { createWorld } = await import('./world.js?v=9');
   setPct(55);
   const world = await createWorld({
     canvas, tier,

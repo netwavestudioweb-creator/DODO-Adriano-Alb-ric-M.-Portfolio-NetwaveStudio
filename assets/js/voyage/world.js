@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { buildPi } from './pi-model.js';
+import { buildPi } from './pi-model.js?v=1';
 
 export const STATIONS = 6;
 const HOLD = 0.55; // part de chaque station où la caméra reste sur place avant de repartir
