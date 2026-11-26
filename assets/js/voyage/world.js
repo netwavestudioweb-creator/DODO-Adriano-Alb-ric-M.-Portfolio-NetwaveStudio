@@ -3,8 +3,7 @@
 // Tout est construit en code (aucun modèle à télécharger). Niveaux : 'full' (lueurs, détails) ou 'lite'.
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { buildPi } from './pi-model.js?v=1';
+import { buildPi } from './pi-model.js?v=2';
 
 export const STATIONS = 6;
 const HOLD = 0.55; // part de chaque station où la caméra reste sur place avant de repartir
@@ -14,7 +13,7 @@ const FIBRES = [COL.blue, COL.orange, COL.green];
 const BG = ['#f4f6f9', '#03050a', '#060911', '#060911', '#05070d', '#f4f6f9'].map((c) => new THREE.Color(c));
 const DARK = [0, 1, 1, 1, 1, 0];
 const FOG = [[14, 46], [1.5, 30], [7, 34], [6, 30], [8, 36], [8, 40]];
-const SHIFT = [1, 0.25, 1, 1, 0.15, 0]; // décalage du sujet vers la droite (ordinateur) ou le haut (mobile)
+const SHIFT = [1, 0.25, 1, 1, 0.15, 0.55]; // décalage du sujet vers la droite (ordinateur) ou le haut (mobile)
 
 const v3 = (x, y, z) => new THREE.Vector3(x, y, z);
 const clamp = THREE.MathUtils.clamp;
@@ -44,7 +43,7 @@ function holdPose(i, h, out) {
     case 2: { const a = 0.62 - h * 0.6, r = 9.2; p.set(Math.sin(a) * r, 0.7 + h * 0.5, -76 + Math.cos(a) * r); l.set(0, -0.55, -76); break; }
     case 3: { const a = 0.85 - h * 0.95, r = 8; p.set(Math.sin(a) * r, 3.6 - h * 1.0, -100 + Math.cos(a) * r); l.set(0, 0.4, -100); break; }
     case 4: p.set(-4.2 + h * 8.4, 0.7, -125.5); l.set(-2.2 + h * 4.4, 0.45, -136); break;
-    default: p.set(0, 0, -149.5 - h * 10.1); l.set(0, 0, -161); break;
+    default: p.set(0, 0, -149 - h * 5.6); l.set(0, 0, -161); break;
   }
   return out;
 }
@@ -59,6 +58,10 @@ const VIA = [
 
 export async function createWorld({ canvas, tier = 'full', onEvent = () => {} }) {
   const full = tier === 'full';
+  // rend la main au navigateur entre deux étapes de construction : la page reste réactive
+  const mark = (n) => { try { performance.mark('w:' + n); } catch (e) { /* ignoré */ } };
+  const breathe = () => new Promise((r) => (window.scheduler && window.scheduler.yield ? window.scheduler.yield().then(r) : setTimeout(r, 0)));
+  mark('debut');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: full, powerPreference: 'high-performance', alpha: false });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, full ? 1.75 : 1.25));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -68,10 +71,12 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
   const scene = new THREE.Scene();
   scene.background = BG[0].clone();
   scene.fog = new THREE.Fog(BG[0].clone(), 14, 46);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+  mark('renderer');
+  // pas d'environnement PMREM (670 ms de compilation bloquante sur une puce intégrée) :
+  // un éclairage trois points suffit, et les métaux sont réglés plus bas pour rester lisibles
   const hemi = new THREE.HemisphereLight(0xffffff, 0x8a96aa, 0.9); scene.add(hemi);
   const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(4, 8, 6); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x9fbaff, 0.9); rim.position.set(-6, 3, -8); scene.add(rim);
 
   const camera = new THREE.PerspectiveCamera(42, 1, 0.05, 220);
   const groups = []; // [{ group, at }] : at = indice de station, pour masquer ce qui est loin
@@ -158,6 +163,7 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     parent.add(mesh); return mesh;
   }
 
+  mark('s0'); await breathe();
   /* ===== 1 · La fibre : on voyage dans le cœur d'une fibre monomode ===== */
   {
     const g = station(1);
@@ -183,12 +189,13 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     });
   }
 
+  mark('s1'); await breathe();
   /* ===== 2 · La box : le connecteur SC/APC se branche, les voyants s'allument ===== */
   let plugged = false;
   const ont = {};
   {
     const g = station(2); g.position.set(0, 0, -76);
-    const white = new THREE.MeshStandardMaterial({ color: 0xd6dbe2, roughness: 0.5, metalness: 0.02, envMapIntensity: 0.35 });
+    const white = new THREE.MeshStandardMaterial({ color: 0xd6dbe2, roughness: 0.5, metalness: 0.02 });
     const body = new THREE.Mesh(new RoundedBoxGeometry(3.2, 4.2, 0.9, 4, 0.2), white); g.add(body);
     const face = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 4.0), new THREE.MeshStandardMaterial({
       transparent: true, roughness: 0.5,
@@ -231,18 +238,19 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
       cable = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.05, 8, false), yellow); g.add(cable);
     }
     ont.placePlug = placePlug; placePlug(0);
-    // câble Ethernet bleu : de la box au Raspberry Pi
-    const eth = new THREE.CatmullRomCurve3([v3(0.2, 1.4, -0.46), v3(0.4, 1.9, -3), v3(-0.5, 0.2, -12), v3(-0.9, 0.6, -21), v3(-1.1, 0.75, -23.6)]);
+    // câble Ethernet bleu : il part de la box vers le réseau local (hors champ)
+    const eth = new THREE.CatmullRomCurve3([v3(0.2, 1.4, -0.46), v3(0.4, 1.9, -2.6), v3(0.1, -1.2, -5.5), v3(-0.6, -7, -8)]);
     g.add(new THREE.Mesh(new THREE.TubeGeometry(eth, 100, 0.045, 8, false), new THREE.MeshStandardMaterial({ color: 0x2f6fe4, roughness: 0.45 })));
     ont.group = g;
   }
 
+  mark('s2'); await breathe();
   /* ===== 3 · Le Raspberry Pi : il se démonte, une onde vocale le traverse ===== */
   const piRef = {};
   {
     const g = station(3); g.position.set(0, 0.3, -100);
-    const { group, setExplode, materials } = buildPi();
-    Object.values(materials).forEach((m) => { m.envMapIntensity = m.metalness > 0.5 ? 0.7 : 0.35; });
+    const { group, setExplode, materials } = buildPi({ tex: full ? 1 : 0.6 });
+    Object.values(materials).forEach((m) => { if (m.metalness > 0.4) { m.metalness = 0.35; m.roughness = Math.max(m.roughness, 0.32); } });
     group.scale.setScalar(0.034); g.add(group);
     piRef.group = group; piRef.setExplode = setExplode;
     const waves = FIBRES.map((c, i) => {
@@ -268,6 +276,7 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     });
   }
 
+  mark('s3'); await breathe();
   /* ===== Tunnel WireGuard : du Pi au serveur, chiffré ===== */
   {
     const g = station(3.5); g.position.y = 0.7;
@@ -276,12 +285,13 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     updaters.push((t, P, d, dt) => { if (P > 2.8 && P < 4.6) tick(dt); });
   }
 
+  mark('s4'); await breathe();
   /* ===== 4 · Serveurs et projets : des écrans qui flottent ===== */
   const screens = [];
   {
     const g = station(4);
-    const rackMat = new THREE.MeshStandardMaterial({ color: 0x1b202b, roughness: 0.45, metalness: 0.6 });
-    const unitMat = new THREE.MeshStandardMaterial({ color: 0x2a3140, roughness: 0.5, metalness: 0.5 });
+    const rackMat = new THREE.MeshStandardMaterial({ color: 0x2a3140, roughness: 0.45, metalness: 0.3 });
+    const unitMat = new THREE.MeshStandardMaterial({ color: 0x38414f, roughness: 0.5, metalness: 0.25 });
     const ledsMesh = [];
     for (const [x, z] of [[-3.8, -141.5], [4.2, -143]]) {
       const rack = new THREE.Group(); rack.position.set(x, 0, z); g.add(rack);
@@ -305,12 +315,12 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
       { name: 'SCRAPER LÉGENDE', kind: 'Python · veille', img: 'assets/img/scraper-1.webp', href: 'projets.html', aspect: 1.333 },
     ];
     const loader = new THREE.TextureLoader();
-    const frameMat = new THREE.MeshStandardMaterial({ color: 0x10141c, roughness: 0.35, metalness: 0.6, emissive: new THREE.Color('#2f6fe4'), emissiveIntensity: 0 });
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0x1a202b, roughness: 0.35, metalness: 0.3, emissive: new THREE.Color('#2f6fe4'), emissiveIntensity: 0 });
     PROJ.forEach((p, i) => {
       const x = (i - 2) * 3.65;
       const sg = new THREE.Group(); sg.position.set(x, [0.25, 0.95, 0.35, 1.0, 0.25][i], -134 - Math.abs(x) * 0.18); sg.rotation.y = -x * 0.05;
       const frame = new THREE.Mesh(new RoundedBoxGeometry(3.36, 2.16, 0.08, 2, 0.04), frameMat.clone()); sg.add(frame);
-      const tex = loader.load(p.img, () => onEvent('asset'));
+      const tex = loader.load(p.img, (t) => { renderer.initTexture(t); onEvent('asset'); });
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
       if (p.aspect > 1.6) { tex.repeat.x = 1.6 / p.aspect; tex.offset.x = (1 - tex.repeat.x) / 2; }
       if (p.aspect < 1.6) { tex.repeat.y = p.aspect / 1.6; tex.offset.y = 1 - tex.repeat.y; }
@@ -342,10 +352,11 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     });
   }
 
+  mark('s5'); await breathe();
   /* ===== 5 · L'écran : on plonge dans le téléphone ===== */
   {
     const g = station(5); g.position.set(0, 0, -161);
-    g.add(new THREE.Mesh(new RoundedBoxGeometry(2.3, 4.7, 0.24, 4, 0.3), new THREE.MeshStandardMaterial({ color: 0x14171c, roughness: 0.3, metalness: 0.7 })));
+    g.add(new THREE.Mesh(new RoundedBoxGeometry(2.3, 4.7, 0.24, 4, 0.3), new THREE.MeshStandardMaterial({ color: 0x1c2027, roughness: 0.3, metalness: 0.35 })));
     const screen = new THREE.Mesh(new THREE.PlaneGeometry(2.12, 4.5), new THREE.MeshBasicMaterial({
       toneMapped: false,
       map: canvasTexture(424, 900, (c, w, h) => {
@@ -366,6 +377,7 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
     screen.position.z = 0.125; g.add(screen);
   }
 
+  mark('s6'); await breathe();
   /* ===== Poussière lumineuse le long du trajet (profondeur, vitesse) ===== */
   const dust = (() => {
     const n = full ? 1800 : 700, a = new Float32Array(n * 3);
@@ -523,7 +535,14 @@ export async function createWorld({ canvas, tier = 'full', onEvent = () => {} })
 
   window.addEventListener('resize', resize);
   resize();
-  render(0.016);
+  await breathe();
+  // textures envoyées à la carte graphique une à une, avant le premier rendu (pas d'à-coup en arrivant sur une étape)
+  const texs = new Set();
+  scene.traverse((o) => { const ms = o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : []; ms.forEach((m) => { for (const k in m) { const v = m[k]; if (v && v.isTexture && !v.isRenderTargetTexture && v.image) texs.add(v); } }); });
+  mark('textures'); for (const tx of texs) { renderer.initTexture(tx); await breathe(); }
+  mark('compile');
+  try { if (renderer.compileAsync) await renderer.compileAsync(scene, camera); } catch (e) { /* compilation au premier rendu */ }
+  mark('rendu1'); render(0.016); mark('pret');
 
   return {
     tier,
