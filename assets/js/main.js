@@ -238,33 +238,6 @@
     });
   });
 
-  /* ---------- B · Pi en 3D temps réel (ordinateur, WebGL disponible) ---------- */
-  var piWrap = document.querySelector('.pi-stage-wrap');
-  var pi3dLoading = false;
-  function canWebGL() {
-    try { var c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; }
-  }
-  function maybeMount3D() {
-    if (pi3dLoading || !piWrap || !pi || reduce || window.innerWidth <= 860 || !canWebGL()) return;
-    if (pi.getBoundingClientRect().top > window.innerHeight * 2.5) return;
-    pi3dLoading = true;
-    import('./pi3d.js?v=4').then(function (m) { m.mountPi(piWrap, piScene); }).catch(function () { /* la séquence d'images reste affichée */ });
-  }
-
-  /* ---------- Orbe-signal (objet signature) ---------- */
-  var orbs = Array.prototype.slice.call(document.querySelectorAll('.orb'));
-  if (orbs.length && canWebGL()) {
-    import('./signal.js?v=6').then(function (m) {
-      orbs.forEach(function (o) {
-        // chaque orbe ne démarre qu'à l'approche de l'écran
-        var obs = new IntersectionObserver(function (en) {
-          if (en[0].isIntersecting) { obs.disconnect(); m.mountSignal(o, { reduce: reduce }); }
-        }, { rootMargin: '300px' });
-        obs.observe(o);
-      });
-    }).catch(function () { /* le dégradé CSS reste affiché */ });
-  }
-
   /* ---------- Le nom : DODO se décode comme un signal ---------- */
   var last = document.querySelector('.name .last');
   if (last && !reduce) {
@@ -302,8 +275,10 @@
   var lenis = null;
   if (!reduce && window.Lenis) {
     lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true });
+    window.__lenis = lenis;
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
     Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function (a) {
+      if (a.hasAttribute('data-go')) return;
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
         if (id.length < 2) return;
@@ -361,7 +336,8 @@
   /* ---------- Transitions entre les pages ---------- */
   requestAnimationFrame(function () { document.body.classList.add('ready'); });
   window.addEventListener('pageshow', function () { document.body.classList.remove('leaving'); document.body.classList.add('ready'); });
-  if (!reduce) {
+  var nativeVT = 'onpagereveal' in window;
+  if (!reduce && !nativeVT) {
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href]');
       if (!a || a.target || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
@@ -375,7 +351,7 @@
 
   /* ---------- Boucle ---------- */
   var ticking = false;
-  function frame() { ticking = false; updateHero(); updatePi(); updateFibre(); maybeMount3D(); }
+  function frame() { ticking = false; updateHero(); updatePi(); updateFibre(); }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', function () { layoutFibre(); onScroll(); });
