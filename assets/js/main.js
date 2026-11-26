@@ -217,11 +217,22 @@
         if (subj) subj.placeholder = b.dataset.hint || '';
       });
     });
+    // Envoi : la messagerie du visiteur s'ouvre avec le message rédigé, WhatsApp en solution de rechange
     if (form) form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!linked) return;
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      note.textContent = "Prototype local : l'envoi réel sera branché sur Web3Forms à la mise en ligne.";
+      var val = function (sel) { var el = rx.querySelector(sel); return el ? el.value.trim() : ''; };
+      var who = rx.querySelector('.seg button[aria-pressed="true"]');
+      var profile = who ? who.textContent.trim() : '';
+      var subject = '[Portfolio] ' + (val('#f-subject') || (profile ? profile : 'Prise de contact')) + (val('#f-name') ? ' · ' + val('#f-name') : '');
+      var NL = String.fromCharCode(10);
+      var body = val('#f-msg') + NL + NL + val('#f-name') + (val('#f-mail') ? ' <' + val('#f-mail') + '>' : '') + (profile ? NL + 'Profil : ' + profile : '');
+      var mail = 'mailto:adrrianododo@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var wa = 'https://wa.me/2290150884670?text=' + encodeURIComponent(subject + NL + NL + body);
+      if (typeof window.va === 'function') window.va('event', { name: 'formulaire_envoye', data: { page: location.pathname } });
+      location.href = mail;
+      note.innerHTML = 'Votre messagerie s’ouvre avec le message prêt à partir. Rien ne s’ouvre ? <a href="' + wa + '">Envoyez-le sur WhatsApp ↗</a> ou écrivez à adrrianododo@gmail.com.';
     });
   });
 
@@ -240,9 +251,12 @@
 
   /* ---------- Le nom : DODO se décode comme un signal ---------- */
   var last = document.querySelector('.name .last');
-  if (last && !reduce) {
+  function startDecode() {
     var target = last.dataset.name, noise = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/<>_';
     var frameN = 0, total = 6 + target.length * 4;
+    // largeur figée pendant le décodage : les lettres aléatoires ne font pas bouger la mise en page
+    last.style.width = last.getBoundingClientRect().width + 'px';
+    last.style.whiteSpace = 'nowrap';
     last.classList.add('decoding');
     var timer = setInterval(function () {
       frameN++;
@@ -254,8 +268,14 @@
         clearInterval(timer);
         last.textContent = target;
         last.classList.remove('decoding');                       // le balayage de lumière prend le relais
+        last.style.width = ''; last.style.whiteSpace = '';
       }
     }, 55);
+  }
+  if (last && !reduce) {
+    // on attend la vraie police (1,5 s au plus) pour mesurer la largeur finale
+    var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    Promise.race([fontsReady, new Promise(function (r) { setTimeout(r, 1500); })]).then(startDecode);
   }
 
   /* ---------- Variante de titres (?titres=fins) ---------- */

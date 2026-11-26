@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
-export function buildPi() {
+export function buildPi({ tex = 1 } = {}) {
   // ---------- Textures dessinées en code ----------
   function canvasTexture(w, h, draw) {
     const c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -12,7 +12,7 @@ export function buildPi() {
     return t;
   }
   // PCB : vernis vert, pistes cuivrées, sérigraphie
-  const pcbTex = canvasTexture(1700, 1120, (g, w, h) => {
+  const pcbTex = canvasTexture(Math.round(1700 * tex), Math.round(1120 * tex), (g, w, h) => {
     const s = w / 85;
     g.fillStyle = '#125c2b'; g.fillRect(0, 0, w, h);
     g.strokeStyle = 'rgba(70,170,100,0.55)'; g.lineWidth = 0.35 * s; g.lineCap = 'round';

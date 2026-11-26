@@ -12,6 +12,7 @@ const panels = sections.map((s) => s.querySelector('.st-panel'));
 const canvas = document.getElementById('world');
 const hud = document.querySelector('.hud');
 const gate = document.getElementById('gate');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* stockage indisponible */ } },
@@ -95,10 +96,14 @@ async function start() {
   setPct(8);
 
   /* ---------- 4. Le monde 3D ---------- */
+  // la page s'affiche d'abord ; le monde 3D se construit ensuite, quand le navigateur est libre
+  if (document.readyState !== 'complete') await new Promise((r) => addEventListener('load', r, { once: true }));
+  await new Promise((r) => ('requestIdleCallback' in window ? requestIdleCallback(r, { timeout: 700 }) : setTimeout(r, 120)));
+  setPct(16);
   if (document.fonts && document.fonts.ready) await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]);
   setPct(25);
   let assets = 0, ready = false;
-  const { createWorld } = await import('./world.js?v=9');
+  const { createWorld } = await import('./world.js?v=16');
   setPct(55);
   const world = await createWorld({
     canvas, tier,
@@ -174,9 +179,11 @@ async function start() {
       audio.station(idx);
     }
     hud.classList.toggle('on-dark', dark > 0.5);
+    const tc = dark > 0.5 ? '#05070d' : '#f4f6f9';
+    if (themeMeta && themeMeta.content !== tc) themeMeta.content = tc;
     audio.mood(i, dark);
     // la scène s'efface quand le voyage est fini
-    const end = smooth(P, 5.62, 5.95);
+    const end = smooth(P, 5.66, 5.96);
     canvas.style.opacity = String(1 - end);
     hud.classList.toggle('off', P > 5.7 || (gate && !gate.hidden));
   }

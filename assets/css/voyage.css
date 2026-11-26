@@ -13,8 +13,8 @@
 
 /* ---------- Étapes ---------- */
 .voyage{position:relative}
-.st{position:relative;height:260vh;height:260svh;pointer-events:none}
-.st-5{height:190vh;height:190svh}
+.st{position:relative;height:230vh;height:230svh;pointer-events:none}
+.st-5{height:180vh;height:180svh}
 .st-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
 .st-wrap{width:100%;display:flex;align-items:center;min-height:100%;padding-block:96px 72px}
 .st-panel{pointer-events:auto;width:min(100%,520px);display:flex;flex-direction:column;gap:18px;padding:30px 32px;border-radius:28px;
