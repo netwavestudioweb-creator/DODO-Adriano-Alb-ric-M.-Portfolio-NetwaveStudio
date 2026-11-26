@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Adriano DODO · Développeur full-stack, réseaux et VoIP</title>
+<script>(function(){try{var q=location.search,s=localStorage;if(/[?&]simple=1/.test(q))s.setItem("ad-simple","1");if(/[?&]simple=0/.test(q))s.removeItem("ad-simple");if(s.getItem("ad-simple")==="1")document.documentElement.classList.add("is-static","is-simple");}catch(e){}if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-static");document.documentElement.classList.add("js");})();</script>
 <meta name="description" content="Adriano DODO, développeur full-stack à Cotonou. Je construis des applications web et les réseaux qui les font tourner : React, Python, PostgreSQL, Asterisk, WireGuard, fibre optique.">
 <link rel="canonical" href="https://dodo-adriano-alb-ric-m-portfolio-ne.vercel.app/">
 <meta property="og:type" content="website">
@@ -16,30 +17,46 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dodo-adriano-alb-ric-m-portfolio-ne.vercel.app/assets/img/og.jpg">
-<link rel="preload" as="image" href="assets/img/pi/pi-00.webp" media="(min-width: 861px)">
 <meta name="theme-color" content="#f4f6f9">
 <link rel="icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
+<link rel="stylesheet" href="assets/css/voyage.css?v=4">
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
 
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
+<body class="home">
 <div class="pt" aria-hidden="true"></div>
 <a class="skip" href="#contenu">Aller au contenu</a>
 
-<!-- A · fibre : court derrière toute la page -->
-<svg id="fibre" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
-  <path class="f1" d="M 104 30 C 80 50, 66 60, 62 95 S 8 150, 6 230 S 40 330, 96 380 S 70 520, 8 560 S 30 700, 94 760 S 60 900, 50 1000"/>
-  <path class="f2" d="M 104 31.2 C 80.8 51.2, 66.8 61.2, 62.8 96.2 S 8.8 151.2, 6.8 231.2 S 40.8 331.2, 96.8 381.2 S 70.8 521.2, 8.8 561.2 S 30.8 701.2, 94.8 761.2 S 60.8 901.2, 50.8 1000"/>
-  <path class="f3" d="M 104 32.4 C 81.6 52.4, 67.6 62.4, 63.6 97.4 S 9.6 152.4, 7.6 232.4 S 41.6 332.4, 97.6 382.4 S 71.6 522.4, 9.6 562.4 S 31.6 702.4, 95.6 762.4 S 61.6 902.4, 51.6 1000"/>
-</svg>
-<span id="pulse" aria-hidden="true"></span>
+<!-- Porte d'entrée : elle s'ouvre sur le voyage -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t" hidden>
+  <div class="door door-l" aria-hidden="true"></div>
+  <div class="door door-r" aria-hidden="true"></div>
+  <span class="seam" aria-hidden="true"><i></i><i></i><i></i></span>
+  <div class="gate-in">
+    <span class="logo gate-logo" aria-hidden="true">AD</span>
+    <span class="eyebrow">Portfolio · Adriano DODO</span>
+    <h2 class="gate-t" id="gate-t">Le voyage <span class="serif">du signal.</span></h2>
+    <p class="gate-p">De la fibre optique à l'écran, en six étapes. Faites défiler pour avancer.</p>
+    <div class="gate-load" aria-hidden="true"><span class="gate-bar"><i></i></span><span class="gate-pct">0 %</span></div>
+    <div class="gate-actions">
+      <button type="button" class="btn btn-p" data-enter="sound">ENTRER AVEC LE SON</button>
+      <button type="button" class="btn btn-g" data-enter="mute">ENTRER SANS SON</button>
+    </div>
+    <a class="gate-simple" href="?simple=1">Version simple, sans animation →</a>
+  </div>
+</div>
+
+<canvas id="world" aria-hidden="true"></canvas>
 
 <div class="wrap nav">
   <header class="nav-in">
@@ -57,180 +74,153 @@
   </header>
 </div>
 
+<!-- Tableau de bord du voyage -->
+<div class="hud" role="region" aria-label="Contrôles du voyage">
+  <nav class="hud-map" aria-label="Étapes du voyage">
+    <button type="button" data-go="0" aria-label="Aller à l'étape 1 : Émission"><i></i></button>
+    <button type="button" data-go="1" aria-label="Aller à l'étape 2 : La fibre"><i></i></button>
+    <button type="button" data-go="2" aria-label="Aller à l'étape 3 : La box"><i></i></button>
+    <button type="button" data-go="3" aria-label="Aller à l'étape 4 : Le Raspberry Pi"><i></i></button>
+    <button type="button" data-go="4" aria-label="Aller à l'étape 5 : Production"><i></i></button>
+    <button type="button" data-go="5" aria-label="Aller à l'étape 6 : Réception"><i></i></button>
+  </nav>
+  <div class="hud-st" aria-live="polite"><span class="hud-n">01 / 06</span><span class="hud-name">Émission</span></div>
+  <div class="hud-btns">
+    <button type="button" class="hud-b" data-act="sound" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">SON</span></button>
+    <button type="button" class="hud-b" data-act="pause" aria-pressed="false"><span class="lbl">PAUSE</span></button>
+  </div>
+</div>
+<div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"><b></b></span></div>
+
 <main id="contenu">
+  <div class="voyage" id="voyage">
 
-  <!-- ===== CHAPITRE 1 · ÉMISSION : l'orbe-signal ===== -->
-  <section class="hero-top" data-station>
-    <div class="wrap hero-top-grid">
-      <div class="hero-text">
-        <span class="chap">Chapitre 1 · Émission</span>
-        <h1 class="name" aria-label="Adriano DODO"><span class="first" aria-hidden="true">Adriano</span><br><span class="last" aria-hidden="true" data-name="DODO">DODO</span><span class="dot" aria-hidden="true">.</span></h1>
-        <p class="tagline">Je construis des applications web <span class="serif">et les réseaux</span> qui les font tourner.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn btn-p btn-roll" href="#plan">SUIVRE LE SIGNAL ↓</a>
-          <a class="btn btn-g" href="assets/CV_Adriano_DODO.pdf">LE CV EN 1 PAGE</a>
-        </div>
-        <div class="who">
-          <img src="assets/img/portrait.webp" alt="Portrait d'Adriano DODO" width="52" height="52">
-          <div><b class="avail">Disponible immédiatement</b><span>COTONOU · UTC+1 · CDI, FREELANCE</span></div>
-        </div>
-      </div>
-      <div class="orb" role="img" aria-label="L'orbe-signal : trois fibres, bleue, orange et verte, convergent vers un nuage de particules lumineuses">
-        <span class="orb-fallback" aria-hidden="true"></span>
-        <span class="pill p1"><i style="--c:var(--blue)"></i>Web</span>
-        <span class="pill p2"><i style="--c:var(--orange)"></i>Réseau &amp; VoIP</span>
-        <span class="pill p3"><i style="--c:var(--green)"></i>IA &amp; automatisation</span>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="stats">
-          <div><b>8</b><span>projets, dont 5 sites en ligne</span></div>
-          <div><b>2026</b><span>Licence Réseaux &amp; Télécoms</span></div>
-          <div><b>2023</b><span>création de NetWave Studio</span></div>
-          <div><b>7 <span class="serif" style="font-size:.6em">couches</span></b><span>du câble à l'interface</span></div>
-        </div>
-      <ul class="proofs" aria-label="Preuves">
-        <li>Licence Pro Réseaux &amp; Télécoms · 2026</li>
-        <li>Cisco NetAcad · Networking Basics, Cybersecurity</li>
-        <li>freeCodeCamp · ~300 h</li>
-        <li>5 sites en ligne</li>
-        <li>12 dépôts publics sur GitHub</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===== CHAPITRE 2 · TRANSPORT (moment C : du plan à l'application) ===== -->
-  <section class="hero" id="plan" data-station>
-    <div class="hero-sticky">
-      <div class="wrap" style="width:100%">
-        <div class="hero-grid">
-          <div class="hero-text">
-            <span class="chap">Chapitre 2 · Transport</span>
-            <h2 class="h2">Chaque projet commence <span class="serif">par un plan.</span></h2>
-            <p class="lead">Continuez à défiler : le plan d'architecture de PitchMySite devient l'application réelle.</p>
+    <!-- ===== 1 · ÉMISSION ===== -->
+    <section class="st st-0" data-st="0" aria-labelledby="st0-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel hero-panel">
+          <span class="chap">Étape 1 · Émission</span>
+          <h1 class="name" id="st0-t" aria-label="Adriano DODO"><span class="first" aria-hidden="true">Adriano</span><br><span class="last" aria-hidden="true" data-name="DODO">DODO</span><span class="dot" aria-hidden="true">.</span></h1>
+          <p class="tagline">Je construis des applications web <span class="serif">et les réseaux</span> qui les font tourner.</p>
+          <div class="btns">
+            <a class="btn btn-p btn-roll" href="#st-1" data-go="1">SUIVRE LE SIGNAL ↓</a>
+            <a class="btn btn-g" href="assets/CV_Adriano_DODO.pdf">LE CV EN 1 PAGE</a>
           </div>
-          <figure class="plan">
-            <div class="plan-frame">
-              <div class="bp-layer" role="img" aria-label="Plan d'architecture de PitchMySite dessiné au trait">
-                <span class="bp" style="left:6%;top:9%">Navigateur · mobile 3G</span>
-                <span class="bpl" style="left:16%;top:17%;width:1.5px;height:14%"></span>
-                <span class="bp" style="left:6%;top:31%">CDN Vercel</span>
-                <span class="bpl" style="left:20%;top:35.5%;width:17%;height:1.5px"></span>
-                <span class="bp" style="left:37%;top:31%">API Next.js</span>
-                <span class="bpl" style="left:46%;top:39%;width:1.5px;height:16%"></span>
-                <span class="bp" style="left:33%;top:55%">Supabase · PostgreSQL</span>
-                <span class="bpl" style="left:16%;top:39%;width:1.5px;height:34%"></span>
-                <span class="bp" style="left:6%;top:73%">SasPay · Mobile Money</span>
-                <span class="bpl" style="left:57%;top:35.5%;width:14%;height:1.5px"></span>
-                <span class="bp" style="left:71%;top:31%">Capture de site</span>
-                <span class="bpl" style="left:80%;top:39%;width:1.5px;height:16%"></span>
-                <span class="bp" style="left:67%;top:55%">Studio de mockups</span>
-                <span class="bp-note">PLAN v1 · PITCHMYSITE · ÉCHELLE 1:1</span>
-              </div>
-              <img class="app-layer" src="assets/img/studio-ensemble.jpg" alt="Interface réelle de PitchMySite" width="1600" height="1000">
-              <span class="wipe" aria-hidden="true"></span>
-            </div>
-            <figcaption><span>← LE PLAN</span><span class="plabel">LE PLAN</span><span>L'APPLICATION →</span></figcaption>
+          <div class="who">
+            <img src="assets/img/portrait.webp" alt="Portrait d'Adriano DODO" width="52" height="52">
+            <div><b class="avail">Disponible immédiatement</b><span>COTONOU · UTC+1 · CDI, FREELANCE</span></div>
+          </div>
+        </div>
+        <div class="st-visual" aria-hidden="true"><span class="orb-fallback"></span></div>
+        <span class="scroll-cue" aria-hidden="true"><i></i>DÉFILEZ</span>
+      </div></div>
+    </section>
+
+    <!-- ===== 2 · LA FIBRE ===== -->
+    <section class="st st-1 dark" data-st="1" id="st-1" aria-labelledby="st1-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel">
+          <span class="chap" style="--c:var(--blue-t)">Étape 2 · La fibre</span>
+          <h2 class="st-title" id="st1-t">La lumière voyage <span class="serif">dans 9 µm de verre.</span></h2>
+          <p>C'est là que j'ai commencé. En 2022, chez Premium Company Bénin, je raccordais des abonnés en fibre optique : soudure, pose, puis une mesure au réflectomètre pour valider chaque liaison. En 2023, à la SoBAPS (Ministère de la Santé), j'ai assuré la maintenance de réseaux de surveillance.</p>
+          <figure class="otdr">
+            <svg viewBox="0 0 320 120" role="img" aria-label="Trace de réflectomètre : la perte augmente doucement avec la distance, une soudure à 1,2 km, la fin de la fibre à 2,4 km">
+              <path class="otdr-grid" d="M30 10V100H310M30 32.5H310M30 55H310M30 77.5H310"/>
+              <path class="otdr-line" pathLength="1" d="M30 14 L34 8 L38 24 L120 38 L122 46 L210 58 L212 50 L216 92 L310 96"/>
+              <text x="30" y="116">0 km</text><text x="112" y="116">1,2 km</text><text x="200" y="116">2,4 km</text><text x="0" y="14">dB</text>
+              <text x="124" y="34" class="ev">soudure</text><text x="218" y="46" class="ev">fin</text>
+            </svg>
+            <figcaption>Trace OTDR · 1310 nm · 0,35 dB/km</figcaption>
           </figure>
+          <div class="chips"><span class="chip">FTTH</span><span class="chip">Soudure optique</span><span class="chip">OTDR</span><span class="chip">Maintenance réseau</span></div>
         </div>
-      </div>
-    </div>
-  </section>
+      </div></div>
+    </section>
 
-  <!-- ===== Projets (rupture sombre) ===== -->
-  <section class="sec dark proj-dark" id="transport">
+    <!-- ===== 3 · LA BOX ===== -->
+    <section class="st st-2 dark" data-st="2" aria-labelledby="st2-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel">
+          <span class="chap" style="--c:var(--orange-t)">Étape 3 · La box</span>
+          <h2 class="st-title" id="st2-t">Le signal entre <span class="serif">chez le client.</span></h2>
+          <p>Le connecteur SC/APC vert se branche sur la box optique (ONT). Le voyant LOS s'éteint, PON s'allume : la liaison est établie. Derrière la box, je monte le réseau local, les VLAN, la téléphonie IP et les tunnels VPN chiffrés.</p>
+          <p class="ont-status" aria-live="polite"><i></i><span>LOS · pas de signal optique</span></p>
+          <div class="chips"><span class="chip">LAN / WAN</span><span class="chip">VLAN</span><span class="chip">SIP · PJSIP</span><span class="chip">WireGuard</span></div>
+        </div>
+        <div class="st-visual" aria-hidden="true"><span class="leds-s"><i class="g"></i><i class="g"></i><i></i><i class="g"></i></span></div>
+      </div></div>
+    </section>
+
+    <!-- ===== 4 · LE RASPBERRY PI ===== -->
+    <section class="st st-3 dark" data-st="3" aria-labelledby="st3-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel">
+          <span class="chap" style="--c:var(--green-t)">Étape 4 · Le Raspberry Pi</span>
+          <h2 class="st-title" id="st3-t">Un centre d'appels <span class="serif">dans une main.</span></h2>
+          <p>Un agent vocal IA qui décroche et répond. La téléphonie tient sur un Raspberry Pi 3 Model B, relié à un serveur par un tunnel chiffré. Mon projet de fin d'études.</p>
+          <div class="ms"><b>&lt;700</b><span>ms</span></div>
+          <span class="mono ms-note">entre la fin de la question et le début de la réponse</span>
+          <ul class="pi-labels">
+            <li style="--c:var(--green)"><span class="mono">PROCESSEUR</span><b>Asterisk 22 recompilé · PJSIP/ARI</b></li>
+            <li style="--c:var(--orange)"><span class="mono">PORT ETHERNET</span><b>Tunnel WireGuard → serveur IA</b><small>Whisper écoute · LLaMA 3.3 répond · ElevenLabs parle</small></li>
+            <li style="--c:#e0466f"><span class="mono">CARTE microSD</span><b>Debian · transfert SFTP</b></li>
+          </ul>
+        </div>
+        <div class="st-visual" aria-hidden="true"><img src="assets/img/pi/pi-11.webp" alt="" width="620" height="812" loading="lazy"></div>
+      </div></div>
+    </section>
+
+    <!-- ===== 5 · PRODUCTION ===== -->
+    <section class="st st-4 dark" data-st="4" aria-labelledby="st4-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel">
+          <span class="chap" style="--c:var(--blue-t)">Étape 5 · Production</span>
+          <h2 class="st-title" id="st4-t">La fibre se divise <span class="serif">en projets.</span></h2>
+          <p class="hint-3d">Touchez ou survolez un écran pour l'ouvrir.</p>
+          <ul class="proj-list">
+            <li><a href="pitchmysite.html"><b>PitchMySite</b><span>SaaS · visuels de présentation</span><i aria-hidden="true">→</i></a></li>
+            <li><a href="alkareem.html"><b>Al Kareem</b><span>E-commerce · 68 → 90+ en 3G</span><i aria-hidden="true">→</i></a></li>
+            <li><a href="https://manager-pro-weld.vercel.app/"><b>Fleet Commander</b><span>SaaS · gestion de flotte</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="https://www.netwave-studio.company/"><b>NetWave Studio</b><span>Mon studio · depuis 2023</span><i aria-hidden="true">↗</i></a></li>
+          </ul>
+          <a class="btn btn-g" href="projets.html">LES 8 PROJETS →</a>
+        </div>
+        <div class="st-visual shots" aria-hidden="true">
+          <img src="assets/img/site-pitchmysite.webp" alt="" width="1200" height="750" loading="lazy">
+          <img src="assets/img/site-alkareem.webp" alt="" width="1200" height="600" loading="lazy">
+          <img src="assets/img/site-fleet.webp" alt="" width="1200" height="750" loading="lazy">
+        </div>
+      </div></div>
+    </section>
+
+    <!-- ===== 6 · RÉCEPTION ===== -->
+    <section class="st st-5" data-st="5" aria-labelledby="st5-t">
+      <div class="st-pin"><div class="wrap st-wrap">
+        <div class="st-panel">
+          <span class="chap" style="--c:var(--green-t)">Étape 6 · Réception</span>
+          <h2 class="st-title" id="st5-t">Le signal <span class="serif">est arrivé.</span></h2>
+          <p>Un poste, une mission ou un projet : je réponds sous 24 h ouvrées.</p>
+          <div class="btns">
+            <a class="btn btn-p btn-roll" href="#contact">ME CONTACTER ↓</a>
+            <a class="btn btn-g" href="assets/CV_Adriano_DODO.pdf">LE CV</a>
+            <a class="btn btn-g" href="https://wa.me/2290150884670">WHATSAPP ↗</a>
+          </div>
+          <ul class="proofs" aria-label="Preuves">
+            <li>Licence Pro Réseaux &amp; Télécoms · 2026</li>
+            <li>Cisco NetAcad · Networking, Cybersecurity</li>
+            <li>8 projets · 5 sites en ligne</li>
+          </ul>
+        </div>
+      </div></div>
+    </section>
+  </div>
+
+  <!-- ===== Après le voyage : les couches OSI ===== -->
+  <section class="sec after" id="couches">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <span class="eyebrow">Projets choisis</span>
-          <h2 class="h2">La fibre se divise <span class="serif">en projets.</span></h2>
-        </div>
-        <a class="btn btn-g" href="projets.html">LES 8 PROJETS →</a>
-      </div>
-
-      <article class="card feature">
-        <div class="txt">
-          <div class="chips"><span class="chip cw">● Web</span><span class="chip ci">● IA</span><span class="chip">SaaS · produit</span></div>
-          <h3>PitchMySite</h3>
-          <p>Collez le lien d'un site, recevez des visuels qui donnent envie de signer : ordinateur, iPhone, scènes photo, 13 modèles prêts à publier.</p>
-          <div class="kpis">
-            <div><b>2–12<span style="font-size:20px"> s</span></b><span>pour capturer un site</span></div>
-            <div><b>100</b><span>accessibilité Lighthouse</span></div>
-          </div>
-          <div class="links"><a class="pl" href="pitchmysite.html">L'ÉTUDE DE CAS →</a><a class="pl" href="https://pitchmysite.com">OUVRIR LE SITE ↗</a><a class="pl" href="https://github.com/netwavestudioweb-creator/OmniMockup">LIRE LE CODE ↗</a></div>
-        </div>
-        <div class="pic"><img src="assets/img/studio-ensemble.jpg" alt="Studio de PitchMySite : un site en mockup ordinateur et iPhone" loading="lazy" width="1600" height="1000"></div>
-      </article>
-
-      <div class="grid2" style="margin-top:24px">
-        <article class="card">
-          <div class="stage" style="background:linear-gradient(160deg,#efe4ff,#d9c2ff)"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>al-kareemparfurmerie.com</span></div><img src="assets/img/site-alkareem.webp" alt="Page d'accueil du site Al Kareem Parfumerie" loading="lazy" width="1200" height="750"></div><img class="phone" src="assets/img/mockup-al-kareem-boutique.webp" alt="" aria-hidden="true" loading="lazy"></div>
-          <div class="cbody">
-            <div class="chips"><span class="chip cw">● Web</span><span class="chip">Projet client</span></div>
-            <h3>Al Kareem Parfumerie</h3>
-            <p>E-commerce pensé pour le téléphone et la 3G. PageSpeed mobile <b style="color:var(--fg)">68 → 90+</b>.</p>
-            <div class="links"><a class="pl" href="alkareem.html">L'ÉTUDE DE CAS →</a><a class="pl" href="https://www.al-kareemparfurmerie.com/">L'OUVRIR EN 3G ↗</a><a class="pl" href="https://github.com/netwavestudioweb-creator/AL_KAREEM-PARFURMERIE">LIRE LE CODE ↗</a></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="stage" style="background:linear-gradient(160deg,#e6efff,#cfe0ff)"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>manager-pro-weld.vercel.app</span></div><img src="assets/img/site-fleet.webp" alt="Page d'accueil de Fleet Commander (Manager Pro)" loading="lazy" width="1200" height="750"></div></div>
-          <div class="cbody">
-            <div class="chips"><span class="chip cw">● Web</span><span class="chip">SaaS · 2025</span></div>
-            <h3>Fleet Commander</h3>
-            <p>Gestion de flotte : <b style="color:var(--fg)">10 modules</b>, accès par rôles, rapports PDF et Excel, FR/EN/ES.</p>
-            <div class="links"><a class="pl" href="https://manager-pro-weld.vercel.app/">TESTER LA DÉMO ↗</a><a class="pl" href="https://github.com/netwavestudioweb-creator/Manager_Pro">LIRE LE CODE ↗</a></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CHAPITRE 3 · DÉMONTAGE (moment B · Raspberry Pi 3 Model B) ===== -->
-  <section class="pi" data-station>
-    <div class="pi-sticky">
-      <div class="wrap" style="width:100%">
-        <div class="pi-box">
-          <div class="pi-text">
-            <span class="chap" style="--c:var(--green-t)">Chapitre 3 · Démontage</span>
-            <h2>Un centre d'appels <span class="serif">dans une main.</span></h2>
-            <p>Un agent vocal IA qui décroche et répond. La téléphonie tient sur un Raspberry Pi 3 Model B. Continuez à défiler : il se démonte pièce par pièce.</p>
-            <div class="ms"><b>&lt;700</b><span>ms</span></div>
-            <span class="mono" style="font-size:12px;color:var(--muted)">entre la fin de la question et le début de la réponse</span>
-          </div>
-          <div class="pi-scene" role="img" aria-label="Rendu 3D d'un Raspberry Pi 3 Model B en vue éclatée : base rouge du boîtier, carte, dissipateur et couvercle blanc, avec leur rôle dans le centre d'appels">
-            <div class="pi-stage-wrap">
-              <img class="pi-seq" src="assets/img/pi/pi-07.webp" data-frames="12" data-path="assets/img/pi/pi-" width="620" height="812" alt="" loading="lazy">
-              <span class="pi-count"></span>
-              <span class="pi-hint">← GLISSEZ POUR TOURNER →</span>
-            </div>
-            <ul class="pi-labels">
-              <li style="--c:#b8bcc4"><span class="mono">COUVERCLE</span><b>Raspberry Pi 3 Model B · installé chez le client</b></li>
-              <li style="--c:var(--green)"><span class="mono">DISSIPATEUR · PROCESSEUR</span><b>Asterisk 22 recompilé · PJSIP/ARI</b></li>
-              <li style="--c:var(--orange)"><span class="mono">CARTE · PORT ETHERNET</span><b>Tunnel WireGuard → serveur IA</b><small>Whisper écoute · LLaMA 3.3 répond · ElevenLabs parle</small></li>
-              <li style="--c:#c51a4a"><span class="mono">BOÎTIER · CARTE microSD</span><b>Debian · transfert SFTP</b></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Scène plein écran : l'orbe revient ===== -->
-  <section class="scene" aria-label="Du terrain au code">
-    <div class="scene-in">
-      <p class="scene-l">Du terrain</p>
-      <div class="orb orb-scene" aria-hidden="true"><span class="orb-fallback"></span></div>
-      <p class="scene-r"><span class="serif">au code.</span></p>
-    </div>
-    <p class="scene-note">Une soudure de fibre en 2022. Huit projets publiés aujourd'hui.</p>
-  </section>
-
-  <!-- ===== CHAPITRE 4 · COUCHES (moment E) ===== -->
-  <section class="sec" data-station>
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="chap" style="--c:var(--orange-t)">Chapitre 4 · Couches</span>
+          <span class="eyebrow">Ce que je fais, couche par couche</span>
           <h2 class="h2">Du câble <span class="serif">à l'interface.</span></h2>
         </div>
         <p class="lead" style="max-width:40ch">Les 7 couches du modèle OSI. Survolez-en une : voici ce que je fais à ce niveau, et le projet qui le prouve.</p>
@@ -249,8 +239,8 @@
     </div>
   </section>
 
-  <!-- ===== CHAPITRE 5 · RÉCEPTION (moment D) ===== -->
-  <section class="sec" style="padding-bottom:64px" data-station>
+  <!-- ===== Contact : brancher le câble ===== -->
+  <section class="sec after" id="contact" style="padding-bottom:64px">
     <div class="wrap">
       <div class="rx">
         <div class="cable-zone" aria-live="polite">
@@ -271,7 +261,7 @@
           </div>
         </div>
         <div class="rx-text">
-          <span class="chap" style="--c:var(--green-t)">Chapitre 5 · Réception</span>
+          <span class="eyebrow">Contact · réponse sous 24 h ouvrées</span>
           <h2>Branchez <span class="serif">la conversation.</span></h2>
           <span class="mail">adrrianododo@gmail.com</span>
           <form class="form" novalidate>
@@ -295,7 +285,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <span>© 2026 Adriano DODO · Conçu et codé à Cotonou</span>
+    <span>© 2026 Adriano DODO · Conçu et codé à Cotonou · <a class="simple-link" href="?simple=1">Version simple</a><a class="immersive-link" href="?simple=0">Version immersive</a></span>
     <nav aria-label="Réseaux">
       <a href="https://github.com/netwavestudioweb-creator">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/alb%C3%A9ric-adrianododo">LinkedIn ↗</a>
@@ -304,6 +294,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=8" defer></script>
+<script src="assets/js/main.js?v=10" defer></script>
+<script type="module" src="assets/js/voyage/voyage.js?v=10"></script>
 </body>
 </html>

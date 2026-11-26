@@ -1,42 +1,9 @@
-// Raspberry Pi 3 Model B en 3D temps réel (Three.js), à l'échelle : 1 unité = 1 mm.
-// L'éclatement suit la variable CSS --k posée par main.js sur .pi-scene ; on peut le faire tourner à la souris.
+// Raspberry Pi 3 Model B modélisé à l'échelle (1 unité = 1 mm), partagé par le voyage.
+// Renvoie le groupe et une fonction d'éclatement (0 = fermé, 1 = éclaté).
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
-export function mountPi(host, scene3d) {
-  const canvas = document.createElement('canvas');
-  canvas.className = 'pi-canvas';
-  canvas.setAttribute('aria-hidden', 'true');
-  host.appendChild(canvas);
-
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.85;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-  const scene = new THREE.Scene();
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
-
-  const camera = new THREE.PerspectiveCamera(23, 1, 1, 2000);
-  camera.position.set(215, 245, 265);
-  camera.lookAt(0, 6, 0);
-
-  const key = new THREE.DirectionalLight(0xffffff, 2.2);
-  key.position.set(60, 160, 80);
-  key.castShadow = true;
-  key.shadow.mapSize.set(2048, 2048);
-  Object.assign(key.shadow.camera, { left: -150, right: 150, top: 150, bottom: -150, near: 1, far: 500 });
-  scene.add(key, new THREE.HemisphereLight(0xffffff, 0xdfe5ee, 0.6));
-
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), new THREE.ShadowMaterial({ opacity: 0.14 }));
-  ground.rotation.x = -Math.PI / 2; ground.position.y = -48; ground.receiveShadow = true;
-  scene.add(ground);
-
+export function buildPi() {
   // ---------- Textures dessinées en code ----------
   function canvasTexture(w, h, draw) {
     const c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -82,7 +49,7 @@ export function mountPi(host, scene3d) {
   };
   function box(w, h, d, mat, x, y, z, parent, r = 0) {
     const g = r > 0 ? new RoundedBoxGeometry(w, h, d, 3, r) : new THREE.BoxGeometry(w, h, d);
-    const m = new THREE.Mesh(g, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true;
+    const m = new THREE.Mesh(g, mat); m.position.set(x, y, z); m.castShadow = false; m.receiveShadow = false;
     parent.add(m); return m;
   }
   const X = (x) => x - 42.5, Z = (z) => z - 28, top = 0.8;
@@ -139,42 +106,12 @@ export function mountPi(host, scene3d) {
 
   const pi = new THREE.Group();
   pi.add(base, board, sink, lid);
-  pi.position.set(-4, 6, 4);
-  scene.add(pi);
-
-  // ---------- Interaction : rotation à la souris, retour en douceur ----------
-  let yaw = 0, targetYaw = 0, drag = false, lastX = 0;
-  canvas.style.cursor = 'grab';
-  canvas.addEventListener('pointerdown', (e) => { drag = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId); canvas.style.cursor = 'grabbing'; });
-  canvas.addEventListener('pointermove', (e) => { if (!drag) return; targetYaw += (e.clientX - lastX) * 0.01; lastX = e.clientX; wake(); });
-  const release = () => { drag = false; canvas.style.cursor = 'grab'; targetYaw = 0; wake(); };
-  canvas.addEventListener('pointerup', release); canvas.addEventListener('pointercancel', release);
-
-  function resize() {
-    const w = host.clientWidth, h = host.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); wake();
-  }
-  new ResizeObserver(resize).observe(host);
-
-  let visible = false, raf = 0, lastK = -1;
-  new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) wake(); }, { rootMargin: '200px' }).observe(host);
-  function wake() { if (!raf && visible) raf = requestAnimationFrame(frame); }
-  function frame() {
-    raf = 0;
-    const kv = parseFloat(getComputedStyle(scene3d).getPropertyValue('--k')) || 0;
-    const e = THREE.MathUtils.clamp(kv, 0, 1);
+  function setExplode(e) {
     base.position.y = -34 * e - 9.5 * (1 - e);
     sink.position.y = top + 1.4 + 26 * e;
     lid.position.y = 12 + 58 * e;
     sd.position.x = X(-2) - 10 * e;
-    yaw += (targetYaw - yaw) * 0.12;
-    pi.rotation.y = -0.18 + yaw + e * 0.25;
-    renderer.render(scene, camera);
-    if (Math.abs(targetYaw - yaw) > 0.001 || drag || e !== lastK) { lastK = e; wake(); }
   }
-  window.addEventListener('scroll', wake, { passive: true });
-  resize();
-  host.classList.add('is-3d');
-  return { wake };
+  setExplode(0);
+  return { group: pi, setExplode, materials: M };
 }
